@@ -199,8 +199,13 @@ class MetaAgentSwarm:
         total = len(queries) * len(self.models) * len(self.orchestrations) * len(self.knowledge_levels)
         
         console.print(f"  Toplam: {total} deney")
+        console.print(f"  Modeller: {list(self.models.keys())}")
+        console.print(f"  Orkestrasyonlar: {self.orchestrations}")
+        console.print(f"  Bilgi Seviyeleri: {self.knowledge_levels}\n")
         
         count = 0
+        current_query = None
+        
         with Progress(SpinnerColumn(), TextColumn("{task.description}"), console=console) as progress:
             task = progress.add_task("Deney çalışıyor...", total=total)
             
@@ -208,6 +213,16 @@ class MetaAgentSwarm:
                 for model_level in self.models.keys():
                     for orch in self.orchestrations:
                         for knowledge_level in self.knowledge_levels:
+                            # Show detailed progress
+                            exp_info = f"Q{query['id']}|{model_level}|{orch}|{knowledge_level}"
+                            
+                            # Print current experiment info
+                            if current_query != query['id']:
+                                console.print(f"\n[dim]Soru {query['id']}: {query['query'][:50]}...[/dim]")
+                                current_query = query['id']
+                            
+                            console.print(f"  → {exp_info}")
+                            
                             result = await self._run_single_experiment(
                                 query, model_level, orch, knowledge_level
                             )
@@ -217,7 +232,7 @@ class MetaAgentSwarm:
                             progress.update(task, advance=1)
         
         workflow.complete({"count": count})
-        console.print(f"[green]  ✓ {count} deney tamamlandı[/green]")
+        console.print(f"\n[green]  ✓ {count} deney tamamlandı[/green]")
     
     async def _run_single_experiment(self, query: Dict, model_level: str,
                                      orchestration: str, knowledge_level: str) -> Dict:
