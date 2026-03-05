@@ -7,6 +7,7 @@ from typing import List, Dict, Any, Optional
 from rich.console import Console
 from rich.progress import Progress, SpinnerColumn, TextColumn
 import sys
+import logging
 
 if sys.stdout.encoding != 'utf-8':
     try:
@@ -15,6 +16,75 @@ if sys.stdout.encoding != 'utf-8':
         pass
 
 console = Console()
+
+
+class ExperimentLogger:
+    """Log all experiment outputs to file"""
+    
+    def __init__(self):
+        self.log_dir = Path("logs")
+        self.log_dir.mkdir(exist_ok=True)
+        
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        self.log_file = self.log_dir / f"experiment_{timestamp}.log"
+        
+        # Setup logging
+        self.logger = logging.getLogger("experiment")
+        self.logger.setLevel(logging.DEBUG)
+        
+        # File handler
+        fh = logging.FileHandler(self.log_file, encoding='utf-8')
+        fh.setLevel(logging.DEBUG)
+        
+        # Console handler for real-time output
+        ch = logging.StreamHandler()
+        ch.setLevel(logging.INFO)
+        
+        # Formatter
+        formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+        fh.setFormatter(formatter)
+        ch.setFormatter(formatter)
+        
+        self.logger.addHandler(fh)
+        self.logger.addHandler(ch)
+    
+    def info(self, msg):
+        self.logger.info(msg)
+    
+    def debug(self, msg):
+        self.logger.debug(msg)
+    
+    def log_experiment(self, query: Dict, model_level: str, orch: str, knowledge: str, result: Dict):
+        """Log experiment details"""
+        self.logger.info("=" * 60)
+        self.logger.info(f"SORU: {query['query']}")
+        self.logger.info(f"Model: {model_level} | Orkestrasyon: {orch} | Bilgi: {knowledge}")
+        self.logger.info("-" * 40)
+        
+        if result.get("success"):
+            res = result.get("result", {})
+            
+            # Extract answer based on orchestration type
+            if "final_answer" in res:
+                answer = res["final_answer"]
+            elif "response" in res:
+                answer = res["response"].get("answer", str(res["response"]))
+            elif "revised_answer" in res:
+                answer = res["revised_answer"]
+            else:
+                answer = str(res)
+            
+            self.logger.info(f"CEVAP:\n{answer[:1000]}...")
+            self.logger.info(f"Süre: {result.get('elapsed_seconds')}s")
+            self.logger.info(f"Başarılı: {result.get('success')}")
+        else:
+            self.logger.error(f"HATA: {result.get('error')}")
+        
+        self.logger.info("=" * 60)
+
+
+# Global logger
+logger = ExperimentLogger()
 
 
 class AgentWorkflow:
@@ -79,6 +149,9 @@ class MetaAgentSwarm:
         self.models = self.config["models"]
         self.orchestrations = self.config["orchestrations"]
         self.knowledge_levels = self.config["knowledge_levels"]
+        
+        # Logger
+        self.logger = ExperimentLogger()
         
         # Workflow state
         self.workflows: Dict[str, AgentWorkflow] = {}
@@ -260,7 +333,7 @@ class MetaAgentSwarm:
             result = orchestrator.run(query["query"], knowledge)
             elapsed = time.time() - start_time
             
-            return {
+            exp_result = {
                 "timestamp": datetime.now().isoformat(),
                 "query_id": query["id"],
                 "query": query["query"],
@@ -274,8 +347,32 @@ class MetaAgentSwarm:
                 "elapsed_seconds": round(elapsed, 2),
                 "user_score": None
             }
+            
+            # Log detailed output
+            self.logger.log_experiment(query, model_level, orchestration, knowledge_level, exp_result)
+            
+            # Also print to console
+            res = result
+            if "final_answer" in res:
+                answer = res["final_answer"]
+            elif "response" in res:
+                answer = res["response"].get("answer", str(res["response"]))
+            elif "revised_answer" in res:
+                answer = res["revised_answer"]
+            else:
+                answer = str(res)
+            
+            console.print(f"\n[cyan]══════════════════════════════════════════════════[/cyan]")
+            console.print(f"[bold]Soru:[/bold] {query['query'][:80]}...")
+            console.print(f"[dim]→ {model_level} | {orchestration} | {knowledge_level} | {elapsed:.1f}s[/dim]")
+            console.print(f"\n[green]Cevap:[/green]")
+            console.print(answer[:500] + "..." if len(answer) > 500 else answer)
+            console.print(f"[cyan]══════════════════════════════════════════════════[/cyan]\n")
+            
+            return exp_result
+            
         except Exception as e:
-            return {
+            exp_result = {
                 "timestamp": datetime.now().isoformat(),
                 "query_id": query["id"],
                 "model_level": model_level,
@@ -286,6 +383,11 @@ class MetaAgentSwarm:
                 "elapsed_seconds": 0,
                 "user_score": None
             }
+            
+            self.logger.log_experiment(query, model_level, orchestration, knowledge_level, exp_result)
+            console.print(f"[red]✗ Hata: {e}[/red]")
+            
+            return exp_result
     
     async def _phase_analyze(self):
         """Phase 4: Sonuçları analiz et"""
@@ -340,6 +442,9 @@ class MetaAgentSwarm:
         }
         
         console.print(f"[green]  ✓ Rapor hazır: {successful}/{total} başarılı[/green]")
+        
+        # Show log file location
+        console.print(f"\n[cyan]📁 Log dosyası:[/cyan] {self.logger.log_file}")
         
         workflow.complete(summary)
     
