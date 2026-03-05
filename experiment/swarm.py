@@ -271,21 +271,41 @@ class MetaAgentSwarm:
         # Calculate total experiments
         total = len(queries) * len(self.models) * len(self.orchestrations) * len(self.knowledge_levels)
         
+        # Check for checkpoint to resume
+        checkpoint_file = Path("results/checkpoint.json")
+        completed_experiments = set()
+        
+        if checkpoint_file.exists():
+            with open(checkpoint_file, "r", encoding="utf-8") as f:
+                checkpoint_data = json.load(f)
+                completed_experiments = set(checkpoint_data.get("completed", []))
+                self.experiment_results = checkpoint_data.get("results", [])
+                console.print(f"[yellow]  ⚠ Yarım kalan deneyden devam ediliyor... {len(completed_experiments)} tamamlanmış[/yellow]")
+        
         console.print(f"  Toplam: {total} deney")
         console.print(f"  Modeller: {list(self.models.keys())}")
         console.print(f"  Orkestrasyonlar: {self.orchestrations}")
         console.print(f"  Bilgi Seviyeleri: {self.knowledge_levels}\n")
         
-        count = 0
+        count = len(completed_experiments)
         current_query = None
         
         with Progress(SpinnerColumn(), TextColumn("{task.description}"), console=console) as progress:
             task = progress.add_task("Deney çalışıyor...", total=total)
+            progress.update(task, advance=count)  # Resume from checkpoint
             
             for query in queries:
                 for model_level in self.models.keys():
                     for orch in self.orchestrations:
                         for knowledge_level in self.knowledge_levels:
+                            # Check if already completed (checkpoint)
+                            exp_key = f"{query['id']}_{model_level}_{orch}_{knowledge_level}"
+                            
+                            if exp_key in completed_experiments:
+                                count += 1
+                                progress.update(task, advance=1)
+                                continue
+                            
                             # Show detailed progress
                             exp_info = f"Q{query['id']}|{model_level}|{orch}|{knowledge_level}"
                             
@@ -301,11 +321,41 @@ class MetaAgentSwarm:
                             )
                             self.experiment_results.append(result)
                             
+                            # Save checkpoint every 10 experiments
+                            exp_key = f"{query['id']}_{model_level}_{orch}_{knowledge_level}"
+                            completed_experiments.add(exp_key)
+                            
+                            if count % 10 == 0:
+                                self._save_checkpoint(completed_experiments)
+                            
                             count += 1
                             progress.update(task, advance=1)
         
+        # Final checkpoint save
+        self._save_checkpoint(completed_experiments, final=True)
+        
         workflow.complete({"count": count})
         console.print(f"\n[green]  ✓ {count} deney tamamlandı[/green]")
+    
+    def _save_checkpoint(self, completed: set, final: bool = False):
+        """Save checkpoint to resume if interrupted"""
+        checkpoint_dir = Path("results")
+        checkpoint_dir.mkdir(exist_ok=True)
+        checkpoint_file = checkpoint_dir / "checkpoint.json"
+        
+        checkpoint_data = {
+            "completed": list(completed),
+            "results": self.experiment_results,
+            "timestamp": datetime.now().isoformat()
+        }
+        
+        with open(checkpoint_file, "w", encoding="utf-8") as f:
+            json.dump(checkpoint_data, f, ensure_ascii=False, indent=2)
+        
+        if final:
+            console.print(f"[green]  ✓ Checkpoint kaydedildi (final)[/green]")
+        elif completed:
+            console.print(f"[dim]  💾 Checkpoint: {len(completed)} deney tamamlandı[/dim]")
     
     async def _run_single_experiment(self, query: Dict, model_level: str,
                                      orchestration: str, knowledge_level: str) -> Dict:
@@ -497,7 +547,15 @@ def main():
     parser = argparse.ArgumentParser(description="Meta-Agent Swarm")
     parser.add_argument("--limit", type=int, default=None, help="Limit queries")
     parser.add_argument("--score", action="store_true", help="Run scoring after")
+    parser.add_argument("--clear", action="store_true", help="Clear checkpoint and start fresh")
     args = parser.parse_args()
+    
+    # Clear checkpoint if requested
+    if args.clear:
+        checkpoint_file = Path("results/checkpoint.json")
+        if checkpoint_file.exists():
+            checkpoint_file.unlink()
+            print("✓ Checkpoint temizlendi")
     
     swarm = MetaAgentSwarm()
     
