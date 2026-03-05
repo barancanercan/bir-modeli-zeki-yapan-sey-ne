@@ -1,0 +1,1226 @@
+[
+  {
+    "timestamp": "2026-03-05T17:40:47.977687",
+    "query_id": 1,
+    "query": "Türkiye'nin 2023-2024 ekonomik performansını analiz et ve enflasyon, işsizlik ve büyüme oranları hakkında bilgi ver.",
+    "category": "ekonomi",
+    "model_level": "smart",
+    "model_name": "qwen3.5:latest",
+    "orchestration": "cot",
+    "knowledge_level": "empty",
+    "success": false,
+    "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı",
+    "result": {
+      "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı"
+    },
+    "elapsed_seconds": 2.05,
+    "user_score": null
+  },
+  {
+    "timestamp": "2026-03-05T17:40:50.402551",
+    "query_id": 1,
+    "query": "Türkiye'nin 2023-2024 ekonomik performansını analiz et ve enflasyon, işsizlik ve büyüme oranları hakkında bilgi ver.",
+    "category": "ekonomi",
+    "model_level": "smart",
+    "model_name": "qwen3.5:latest",
+    "orchestration": "cot",
+    "knowledge_level": "basic",
+    "success": false,
+    "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı",
+    "result": {
+      "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı"
+    },
+    "elapsed_seconds": 2.04,
+    "user_score": null
+  },
+  {
+    "timestamp": "2026-03-05T17:40:52.812677",
+    "query_id": 1,
+    "query": "Türkiye'nin 2023-2024 ekonomik performansını analiz et ve enflasyon, işsizlik ve büyüme oranları hakkında bilgi ver.",
+    "category": "ekonomi",
+    "model_level": "smart",
+    "model_name": "qwen3.5:latest",
+    "orchestration": "cot",
+    "knowledge_level": "comprehensive",
+    "success": false,
+    "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı",
+    "result": {
+      "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı"
+    },
+    "elapsed_seconds": 2.03,
+    "user_score": null
+  },
+  {
+    "timestamp": "2026-03-05T17:40:55.222749",
+    "query_id": 1,
+    "query": "Türkiye'nin 2023-2024 ekonomik performansını analiz et ve enflasyon, işsizlik ve büyüme oranları hakkında bilgi ver.",
+    "category": "ekonomi",
+    "model_level": "smart",
+    "model_name": "qwen3.5:latest",
+    "orchestration": "react",
+    "knowledge_level": "empty",
+    "success": false,
+    "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı",
+    "result": {
+      "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı"
+    },
+    "elapsed_seconds": 2.04,
+    "user_score": null
+  },
+  {
+    "timestamp": "2026-03-05T17:40:57.650688",
+    "query_id": 1,
+    "query": "Türkiye'nin 2023-2024 ekonomik performansını analiz et ve enflasyon, işsizlik ve büyüme oranları hakkında bilgi ver.",
+    "category": "ekonomi",
+    "model_level": "smart",
+    "model_name": "qwen3.5:latest",
+    "orchestration": "react",
+    "knowledge_level": "basic",
+    "success": false,
+    "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı",
+    "result": {
+      "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı"
+    },
+    "elapsed_seconds": 2.05,
+    "user_score": null
+  },
+  {
+    "timestamp": "2026-03-05T17:41:00.075220",
+    "query_id": 1,
+    "query": "Türkiye'nin 2023-2024 ekonomik performansını analiz et ve enflasyon, işsizlik ve büyüme oranları hakkında bilgi ver.",
+    "category": "ekonomi",
+    "model_level": "smart",
+    "model_name": "qwen3.5:latest",
+    "orchestration": "react",
+    "knowledge_level": "comprehensive",
+    "success": false,
+    "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı",
+    "result": {
+      "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı"
+    },
+    "elapsed_seconds": 2.05,
+    "user_score": null
+  },
+  {
+    "timestamp": "2026-03-05T17:41:02.480903",
+    "query_id": 1,
+    "query": "Türkiye'nin 2023-2024 ekonomik performansını analiz et ve enflasyon, işsizlik ve büyüme oranları hakkında bilgi ver.",
+    "category": "ekonomi",
+    "model_level": "smart",
+    "model_name": "qwen3.5:latest",
+    "orchestration": "rewoo",
+    "knowledge_level": "empty",
+    "success": false,
+    "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı",
+    "result": {
+      "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı"
+    },
+    "elapsed_seconds": 2.03,
+    "user_score": null
+  },
+  {
+    "timestamp": "2026-03-05T17:41:04.907512",
+    "query_id": 1,
+    "query": "Türkiye'nin 2023-2024 ekonomik performansını analiz et ve enflasyon, işsizlik ve büyüme oranları hakkında bilgi ver.",
+    "category": "ekonomi",
+    "model_level": "smart",
+    "model_name": "qwen3.5:latest",
+    "orchestration": "rewoo",
+    "knowledge_level": "basic",
+    "success": false,
+    "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı",
+    "result": {
+      "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı"
+    },
+    "elapsed_seconds": 2.05,
+    "user_score": null
+  },
+  {
+    "timestamp": "2026-03-05T17:41:07.300492",
+    "query_id": 1,
+    "query": "Türkiye'nin 2023-2024 ekonomik performansını analiz et ve enflasyon, işsizlik ve büyüme oranları hakkında bilgi ver.",
+    "category": "ekonomi",
+    "model_level": "smart",
+    "model_name": "qwen3.5:latest",
+    "orchestration": "rewoo",
+    "knowledge_level": "comprehensive",
+    "success": false,
+    "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı",
+    "result": {
+      "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı"
+    },
+    "elapsed_seconds": 2.02,
+    "user_score": null
+  },
+  {
+    "timestamp": "2026-03-05T17:41:09.691379",
+    "query_id": 1,
+    "query": "Türkiye'nin 2023-2024 ekonomik performansını analiz et ve enflasyon, işsizlik ve büyüme oranları hakkında bilgi ver.",
+    "category": "ekonomi",
+    "model_level": "smart",
+    "model_name": "qwen3.5:latest",
+    "orchestration": "reflexion",
+    "knowledge_level": "empty",
+    "success": false,
+    "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı",
+    "result": {
+      "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı"
+    },
+    "elapsed_seconds": 2.02,
+    "user_score": null
+  },
+  {
+    "timestamp": "2026-03-05T17:41:12.103442",
+    "query_id": 1,
+    "query": "Türkiye'nin 2023-2024 ekonomik performansını analiz et ve enflasyon, işsizlik ve büyüme oranları hakkında bilgi ver.",
+    "category": "ekonomi",
+    "model_level": "smart",
+    "model_name": "qwen3.5:latest",
+    "orchestration": "reflexion",
+    "knowledge_level": "basic",
+    "success": false,
+    "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı",
+    "result": {
+      "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı"
+    },
+    "elapsed_seconds": 2.04,
+    "user_score": null
+  },
+  {
+    "timestamp": "2026-03-05T17:41:14.518029",
+    "query_id": 1,
+    "query": "Türkiye'nin 2023-2024 ekonomik performansını analiz et ve enflasyon, işsizlik ve büyüme oranları hakkında bilgi ver.",
+    "category": "ekonomi",
+    "model_level": "smart",
+    "model_name": "qwen3.5:latest",
+    "orchestration": "reflexion",
+    "knowledge_level": "comprehensive",
+    "success": false,
+    "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı",
+    "result": {
+      "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı"
+    },
+    "elapsed_seconds": 2.04,
+    "user_score": null
+  },
+  {
+    "timestamp": "2026-03-05T17:41:16.925879",
+    "query_id": 1,
+    "query": "Türkiye'nin 2023-2024 ekonomik performansını analiz et ve enflasyon, işsizlik ve büyüme oranları hakkında bilgi ver.",
+    "category": "ekonomi",
+    "model_level": "medium",
+    "model_name": "qwen2.5:7b",
+    "orchestration": "cot",
+    "knowledge_level": "empty",
+    "success": false,
+    "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı",
+    "result": {
+      "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı"
+    },
+    "elapsed_seconds": 2.04,
+    "user_score": null
+  },
+  {
+    "timestamp": "2026-03-05T17:41:19.343566",
+    "query_id": 1,
+    "query": "Türkiye'nin 2023-2024 ekonomik performansını analiz et ve enflasyon, işsizlik ve büyüme oranları hakkında bilgi ver.",
+    "category": "ekonomi",
+    "model_level": "medium",
+    "model_name": "qwen2.5:7b",
+    "orchestration": "cot",
+    "knowledge_level": "basic",
+    "success": false,
+    "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı",
+    "result": {
+      "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı"
+    },
+    "elapsed_seconds": 2.04,
+    "user_score": null
+  },
+  {
+    "timestamp": "2026-03-05T17:41:21.757375",
+    "query_id": 1,
+    "query": "Türkiye'nin 2023-2024 ekonomik performansını analiz et ve enflasyon, işsizlik ve büyüme oranları hakkında bilgi ver.",
+    "category": "ekonomi",
+    "model_level": "medium",
+    "model_name": "qwen2.5:7b",
+    "orchestration": "cot",
+    "knowledge_level": "comprehensive",
+    "success": false,
+    "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı",
+    "result": {
+      "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı"
+    },
+    "elapsed_seconds": 2.04,
+    "user_score": null
+  },
+  {
+    "timestamp": "2026-03-05T17:41:24.174818",
+    "query_id": 1,
+    "query": "Türkiye'nin 2023-2024 ekonomik performansını analiz et ve enflasyon, işsizlik ve büyüme oranları hakkında bilgi ver.",
+    "category": "ekonomi",
+    "model_level": "medium",
+    "model_name": "qwen2.5:7b",
+    "orchestration": "react",
+    "knowledge_level": "empty",
+    "success": false,
+    "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı",
+    "result": {
+      "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı"
+    },
+    "elapsed_seconds": 2.04,
+    "user_score": null
+  },
+  {
+    "timestamp": "2026-03-05T17:41:26.613812",
+    "query_id": 1,
+    "query": "Türkiye'nin 2023-2024 ekonomik performansını analiz et ve enflasyon, işsizlik ve büyüme oranları hakkında bilgi ver.",
+    "category": "ekonomi",
+    "model_level": "medium",
+    "model_name": "qwen2.5:7b",
+    "orchestration": "react",
+    "knowledge_level": "basic",
+    "success": false,
+    "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı",
+    "result": {
+      "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı"
+    },
+    "elapsed_seconds": 2.04,
+    "user_score": null
+  },
+  {
+    "timestamp": "2026-03-05T17:41:29.025375",
+    "query_id": 1,
+    "query": "Türkiye'nin 2023-2024 ekonomik performansını analiz et ve enflasyon, işsizlik ve büyüme oranları hakkında bilgi ver.",
+    "category": "ekonomi",
+    "model_level": "medium",
+    "model_name": "qwen2.5:7b",
+    "orchestration": "react",
+    "knowledge_level": "comprehensive",
+    "success": false,
+    "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı",
+    "result": {
+      "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı"
+    },
+    "elapsed_seconds": 2.03,
+    "user_score": null
+  },
+  {
+    "timestamp": "2026-03-05T17:41:31.470751",
+    "query_id": 1,
+    "query": "Türkiye'nin 2023-2024 ekonomik performansını analiz et ve enflasyon, işsizlik ve büyüme oranları hakkında bilgi ver.",
+    "category": "ekonomi",
+    "model_level": "medium",
+    "model_name": "qwen2.5:7b",
+    "orchestration": "rewoo",
+    "knowledge_level": "empty",
+    "success": false,
+    "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı",
+    "result": {
+      "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı"
+    },
+    "elapsed_seconds": 2.05,
+    "user_score": null
+  },
+  {
+    "timestamp": "2026-03-05T17:41:33.882768",
+    "query_id": 1,
+    "query": "Türkiye'nin 2023-2024 ekonomik performansını analiz et ve enflasyon, işsizlik ve büyüme oranları hakkında bilgi ver.",
+    "category": "ekonomi",
+    "model_level": "medium",
+    "model_name": "qwen2.5:7b",
+    "orchestration": "rewoo",
+    "knowledge_level": "basic",
+    "success": false,
+    "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı",
+    "result": {
+      "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı"
+    },
+    "elapsed_seconds": 2.04,
+    "user_score": null
+  },
+  {
+    "timestamp": "2026-03-05T17:41:36.287448",
+    "query_id": 1,
+    "query": "Türkiye'nin 2023-2024 ekonomik performansını analiz et ve enflasyon, işsizlik ve büyüme oranları hakkında bilgi ver.",
+    "category": "ekonomi",
+    "model_level": "medium",
+    "model_name": "qwen2.5:7b",
+    "orchestration": "rewoo",
+    "knowledge_level": "comprehensive",
+    "success": false,
+    "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı",
+    "result": {
+      "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı"
+    },
+    "elapsed_seconds": 2.03,
+    "user_score": null
+  },
+  {
+    "timestamp": "2026-03-05T17:41:38.691569",
+    "query_id": 1,
+    "query": "Türkiye'nin 2023-2024 ekonomik performansını analiz et ve enflasyon, işsizlik ve büyüme oranları hakkında bilgi ver.",
+    "category": "ekonomi",
+    "model_level": "medium",
+    "model_name": "qwen2.5:7b",
+    "orchestration": "reflexion",
+    "knowledge_level": "empty",
+    "success": false,
+    "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı",
+    "result": {
+      "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı"
+    },
+    "elapsed_seconds": 2.03,
+    "user_score": null
+  },
+  {
+    "timestamp": "2026-03-05T17:41:41.137655",
+    "query_id": 1,
+    "query": "Türkiye'nin 2023-2024 ekonomik performansını analiz et ve enflasyon, işsizlik ve büyüme oranları hakkında bilgi ver.",
+    "category": "ekonomi",
+    "model_level": "medium",
+    "model_name": "qwen2.5:7b",
+    "orchestration": "reflexion",
+    "knowledge_level": "basic",
+    "success": false,
+    "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı",
+    "result": {
+      "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı"
+    },
+    "elapsed_seconds": 2.04,
+    "user_score": null
+  },
+  {
+    "timestamp": "2026-03-05T17:41:43.554701",
+    "query_id": 1,
+    "query": "Türkiye'nin 2023-2024 ekonomik performansını analiz et ve enflasyon, işsizlik ve büyüme oranları hakkında bilgi ver.",
+    "category": "ekonomi",
+    "model_level": "medium",
+    "model_name": "qwen2.5:7b",
+    "orchestration": "reflexion",
+    "knowledge_level": "comprehensive",
+    "success": false,
+    "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı",
+    "result": {
+      "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı"
+    },
+    "elapsed_seconds": 2.04,
+    "user_score": null
+  },
+  {
+    "timestamp": "2026-03-05T17:41:45.979986",
+    "query_id": 1,
+    "query": "Türkiye'nin 2023-2024 ekonomik performansını analiz et ve enflasyon, işsizlik ve büyüme oranları hakkında bilgi ver.",
+    "category": "ekonomi",
+    "model_level": "dumb",
+    "model_name": "phi3:latest",
+    "orchestration": "cot",
+    "knowledge_level": "empty",
+    "success": false,
+    "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı",
+    "result": {
+      "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı"
+    },
+    "elapsed_seconds": 2.05,
+    "user_score": null
+  },
+  {
+    "timestamp": "2026-03-05T17:41:48.399875",
+    "query_id": 1,
+    "query": "Türkiye'nin 2023-2024 ekonomik performansını analiz et ve enflasyon, işsizlik ve büyüme oranları hakkında bilgi ver.",
+    "category": "ekonomi",
+    "model_level": "dumb",
+    "model_name": "phi3:latest",
+    "orchestration": "cot",
+    "knowledge_level": "basic",
+    "success": false,
+    "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı",
+    "result": {
+      "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı"
+    },
+    "elapsed_seconds": 2.05,
+    "user_score": null
+  },
+  {
+    "timestamp": "2026-03-05T17:41:50.816628",
+    "query_id": 1,
+    "query": "Türkiye'nin 2023-2024 ekonomik performansını analiz et ve enflasyon, işsizlik ve büyüme oranları hakkında bilgi ver.",
+    "category": "ekonomi",
+    "model_level": "dumb",
+    "model_name": "phi3:latest",
+    "orchestration": "cot",
+    "knowledge_level": "comprehensive",
+    "success": false,
+    "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı",
+    "result": {
+      "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı"
+    },
+    "elapsed_seconds": 2.03,
+    "user_score": null
+  },
+  {
+    "timestamp": "2026-03-05T17:41:53.238251",
+    "query_id": 1,
+    "query": "Türkiye'nin 2023-2024 ekonomik performansını analiz et ve enflasyon, işsizlik ve büyüme oranları hakkında bilgi ver.",
+    "category": "ekonomi",
+    "model_level": "dumb",
+    "model_name": "phi3:latest",
+    "orchestration": "react",
+    "knowledge_level": "empty",
+    "success": false,
+    "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı",
+    "result": {
+      "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı"
+    },
+    "elapsed_seconds": 2.05,
+    "user_score": null
+  },
+  {
+    "timestamp": "2026-03-05T17:41:55.646626",
+    "query_id": 1,
+    "query": "Türkiye'nin 2023-2024 ekonomik performansını analiz et ve enflasyon, işsizlik ve büyüme oranları hakkında bilgi ver.",
+    "category": "ekonomi",
+    "model_level": "dumb",
+    "model_name": "phi3:latest",
+    "orchestration": "react",
+    "knowledge_level": "basic",
+    "success": false,
+    "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı",
+    "result": {
+      "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı"
+    },
+    "elapsed_seconds": 2.04,
+    "user_score": null
+  },
+  {
+    "timestamp": "2026-03-05T17:41:58.060326",
+    "query_id": 1,
+    "query": "Türkiye'nin 2023-2024 ekonomik performansını analiz et ve enflasyon, işsizlik ve büyüme oranları hakkında bilgi ver.",
+    "category": "ekonomi",
+    "model_level": "dumb",
+    "model_name": "phi3:latest",
+    "orchestration": "react",
+    "knowledge_level": "comprehensive",
+    "success": false,
+    "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı",
+    "result": {
+      "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı"
+    },
+    "elapsed_seconds": 2.04,
+    "user_score": null
+  },
+  {
+    "timestamp": "2026-03-05T17:42:00.478898",
+    "query_id": 1,
+    "query": "Türkiye'nin 2023-2024 ekonomik performansını analiz et ve enflasyon, işsizlik ve büyüme oranları hakkında bilgi ver.",
+    "category": "ekonomi",
+    "model_level": "dumb",
+    "model_name": "phi3:latest",
+    "orchestration": "rewoo",
+    "knowledge_level": "empty",
+    "success": false,
+    "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı",
+    "result": {
+      "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı"
+    },
+    "elapsed_seconds": 2.05,
+    "user_score": null
+  },
+  {
+    "timestamp": "2026-03-05T17:42:02.886477",
+    "query_id": 1,
+    "query": "Türkiye'nin 2023-2024 ekonomik performansını analiz et ve enflasyon, işsizlik ve büyüme oranları hakkında bilgi ver.",
+    "category": "ekonomi",
+    "model_level": "dumb",
+    "model_name": "phi3:latest",
+    "orchestration": "rewoo",
+    "knowledge_level": "basic",
+    "success": false,
+    "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı",
+    "result": {
+      "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı"
+    },
+    "elapsed_seconds": 2.03,
+    "user_score": null
+  },
+  {
+    "timestamp": "2026-03-05T17:42:05.303202",
+    "query_id": 1,
+    "query": "Türkiye'nin 2023-2024 ekonomik performansını analiz et ve enflasyon, işsizlik ve büyüme oranları hakkında bilgi ver.",
+    "category": "ekonomi",
+    "model_level": "dumb",
+    "model_name": "phi3:latest",
+    "orchestration": "rewoo",
+    "knowledge_level": "comprehensive",
+    "success": false,
+    "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı",
+    "result": {
+      "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı"
+    },
+    "elapsed_seconds": 2.04,
+    "user_score": null
+  },
+  {
+    "timestamp": "2026-03-05T17:42:07.727397",
+    "query_id": 1,
+    "query": "Türkiye'nin 2023-2024 ekonomik performansını analiz et ve enflasyon, işsizlik ve büyüme oranları hakkında bilgi ver.",
+    "category": "ekonomi",
+    "model_level": "dumb",
+    "model_name": "phi3:latest",
+    "orchestration": "reflexion",
+    "knowledge_level": "empty",
+    "success": false,
+    "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı",
+    "result": {
+      "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı"
+    },
+    "elapsed_seconds": 2.05,
+    "user_score": null
+  },
+  {
+    "timestamp": "2026-03-05T17:42:10.131872",
+    "query_id": 1,
+    "query": "Türkiye'nin 2023-2024 ekonomik performansını analiz et ve enflasyon, işsizlik ve büyüme oranları hakkında bilgi ver.",
+    "category": "ekonomi",
+    "model_level": "dumb",
+    "model_name": "phi3:latest",
+    "orchestration": "reflexion",
+    "knowledge_level": "basic",
+    "success": false,
+    "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı",
+    "result": {
+      "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı"
+    },
+    "elapsed_seconds": 2.03,
+    "user_score": null
+  },
+  {
+    "timestamp": "2026-03-05T17:42:12.559400",
+    "query_id": 1,
+    "query": "Türkiye'nin 2023-2024 ekonomik performansını analiz et ve enflasyon, işsizlik ve büyüme oranları hakkında bilgi ver.",
+    "category": "ekonomi",
+    "model_level": "dumb",
+    "model_name": "phi3:latest",
+    "orchestration": "reflexion",
+    "knowledge_level": "comprehensive",
+    "success": false,
+    "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı",
+    "result": {
+      "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı"
+    },
+    "elapsed_seconds": 2.04,
+    "user_score": null
+  },
+  {
+    "timestamp": "2026-03-05T17:42:14.975539",
+    "query_id": 2,
+    "query": "ABD ve Çin arasındaki ticaret savaşının son 2 yıldaki gelişmelerini ve küresel piyasalara etkisini değerlendir.",
+    "category": "uluslararası",
+    "model_level": "smart",
+    "model_name": "qwen3.5:latest",
+    "orchestration": "cot",
+    "knowledge_level": "empty",
+    "success": false,
+    "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı",
+    "result": {
+      "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı"
+    },
+    "elapsed_seconds": 2.04,
+    "user_score": null
+  },
+  {
+    "timestamp": "2026-03-05T17:42:17.395366",
+    "query_id": 2,
+    "query": "ABD ve Çin arasındaki ticaret savaşının son 2 yıldaki gelişmelerini ve küresel piyasalara etkisini değerlendir.",
+    "category": "uluslararası",
+    "model_level": "smart",
+    "model_name": "qwen3.5:latest",
+    "orchestration": "cot",
+    "knowledge_level": "basic",
+    "success": false,
+    "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı",
+    "result": {
+      "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı"
+    },
+    "elapsed_seconds": 2.05,
+    "user_score": null
+  },
+  {
+    "timestamp": "2026-03-05T17:42:19.820118",
+    "query_id": 2,
+    "query": "ABD ve Çin arasındaki ticaret savaşının son 2 yıldaki gelişmelerini ve küresel piyasalara etkisini değerlendir.",
+    "category": "uluslararası",
+    "model_level": "smart",
+    "model_name": "qwen3.5:latest",
+    "orchestration": "cot",
+    "knowledge_level": "comprehensive",
+    "success": false,
+    "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı",
+    "result": {
+      "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı"
+    },
+    "elapsed_seconds": 2.04,
+    "user_score": null
+  },
+  {
+    "timestamp": "2026-03-05T17:42:22.242792",
+    "query_id": 2,
+    "query": "ABD ve Çin arasındaki ticaret savaşının son 2 yıldaki gelişmelerini ve küresel piyasalara etkisini değerlendir.",
+    "category": "uluslararası",
+    "model_level": "smart",
+    "model_name": "qwen3.5:latest",
+    "orchestration": "react",
+    "knowledge_level": "empty",
+    "success": false,
+    "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı",
+    "result": {
+      "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı"
+    },
+    "elapsed_seconds": 2.04,
+    "user_score": null
+  },
+  {
+    "timestamp": "2026-03-05T17:42:24.670171",
+    "query_id": 2,
+    "query": "ABD ve Çin arasındaki ticaret savaşının son 2 yıldaki gelişmelerini ve küresel piyasalara etkisini değerlendir.",
+    "category": "uluslararası",
+    "model_level": "smart",
+    "model_name": "qwen3.5:latest",
+    "orchestration": "react",
+    "knowledge_level": "basic",
+    "success": false,
+    "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı",
+    "result": {
+      "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı"
+    },
+    "elapsed_seconds": 2.05,
+    "user_score": null
+  },
+  {
+    "timestamp": "2026-03-05T17:42:27.102470",
+    "query_id": 2,
+    "query": "ABD ve Çin arasındaki ticaret savaşının son 2 yıldaki gelişmelerini ve küresel piyasalara etkisini değerlendir.",
+    "category": "uluslararası",
+    "model_level": "smart",
+    "model_name": "qwen3.5:latest",
+    "orchestration": "react",
+    "knowledge_level": "comprehensive",
+    "success": false,
+    "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı",
+    "result": {
+      "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı"
+    },
+    "elapsed_seconds": 2.05,
+    "user_score": null
+  },
+  {
+    "timestamp": "2026-03-05T17:42:29.505521",
+    "query_id": 2,
+    "query": "ABD ve Çin arasındaki ticaret savaşının son 2 yıldaki gelişmelerini ve küresel piyasalara etkisini değerlendir.",
+    "category": "uluslararası",
+    "model_level": "smart",
+    "model_name": "qwen3.5:latest",
+    "orchestration": "rewoo",
+    "knowledge_level": "empty",
+    "success": false,
+    "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı",
+    "result": {
+      "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı"
+    },
+    "elapsed_seconds": 2.02,
+    "user_score": null
+  },
+  {
+    "timestamp": "2026-03-05T17:42:31.911996",
+    "query_id": 2,
+    "query": "ABD ve Çin arasındaki ticaret savaşının son 2 yıldaki gelişmelerini ve küresel piyasalara etkisini değerlendir.",
+    "category": "uluslararası",
+    "model_level": "smart",
+    "model_name": "qwen3.5:latest",
+    "orchestration": "rewoo",
+    "knowledge_level": "basic",
+    "success": false,
+    "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı",
+    "result": {
+      "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı"
+    },
+    "elapsed_seconds": 2.02,
+    "user_score": null
+  },
+  {
+    "timestamp": "2026-03-05T17:42:34.340079",
+    "query_id": 2,
+    "query": "ABD ve Çin arasındaki ticaret savaşının son 2 yıldaki gelişmelerini ve küresel piyasalara etkisini değerlendir.",
+    "category": "uluslararası",
+    "model_level": "smart",
+    "model_name": "qwen3.5:latest",
+    "orchestration": "rewoo",
+    "knowledge_level": "comprehensive",
+    "success": false,
+    "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı",
+    "result": {
+      "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı"
+    },
+    "elapsed_seconds": 2.05,
+    "user_score": null
+  },
+  {
+    "timestamp": "2026-03-05T17:42:36.765329",
+    "query_id": 2,
+    "query": "ABD ve Çin arasındaki ticaret savaşının son 2 yıldaki gelişmelerini ve küresel piyasalara etkisini değerlendir.",
+    "category": "uluslararası",
+    "model_level": "smart",
+    "model_name": "qwen3.5:latest",
+    "orchestration": "reflexion",
+    "knowledge_level": "empty",
+    "success": false,
+    "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı",
+    "result": {
+      "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı"
+    },
+    "elapsed_seconds": 2.04,
+    "user_score": null
+  },
+  {
+    "timestamp": "2026-03-05T17:42:39.176179",
+    "query_id": 2,
+    "query": "ABD ve Çin arasındaki ticaret savaşının son 2 yıldaki gelişmelerini ve küresel piyasalara etkisini değerlendir.",
+    "category": "uluslararası",
+    "model_level": "smart",
+    "model_name": "qwen3.5:latest",
+    "orchestration": "reflexion",
+    "knowledge_level": "basic",
+    "success": false,
+    "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı",
+    "result": {
+      "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı"
+    },
+    "elapsed_seconds": 2.04,
+    "user_score": null
+  },
+  {
+    "timestamp": "2026-03-05T17:42:41.580119",
+    "query_id": 2,
+    "query": "ABD ve Çin arasındaki ticaret savaşının son 2 yıldaki gelişmelerini ve küresel piyasalara etkisini değerlendir.",
+    "category": "uluslararası",
+    "model_level": "smart",
+    "model_name": "qwen3.5:latest",
+    "orchestration": "reflexion",
+    "knowledge_level": "comprehensive",
+    "success": false,
+    "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı",
+    "result": {
+      "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı"
+    },
+    "elapsed_seconds": 2.03,
+    "user_score": null
+  },
+  {
+    "timestamp": "2026-03-05T17:42:44.007134",
+    "query_id": 2,
+    "query": "ABD ve Çin arasındaki ticaret savaşının son 2 yıldaki gelişmelerini ve küresel piyasalara etkisini değerlendir.",
+    "category": "uluslararası",
+    "model_level": "medium",
+    "model_name": "qwen2.5:7b",
+    "orchestration": "cot",
+    "knowledge_level": "empty",
+    "success": false,
+    "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı",
+    "result": {
+      "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı"
+    },
+    "elapsed_seconds": 2.05,
+    "user_score": null
+  },
+  {
+    "timestamp": "2026-03-05T17:42:46.428174",
+    "query_id": 2,
+    "query": "ABD ve Çin arasındaki ticaret savaşının son 2 yıldaki gelişmelerini ve küresel piyasalara etkisini değerlendir.",
+    "category": "uluslararası",
+    "model_level": "medium",
+    "model_name": "qwen2.5:7b",
+    "orchestration": "cot",
+    "knowledge_level": "basic",
+    "success": false,
+    "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı",
+    "result": {
+      "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı"
+    },
+    "elapsed_seconds": 2.04,
+    "user_score": null
+  },
+  {
+    "timestamp": "2026-03-05T17:42:48.836245",
+    "query_id": 2,
+    "query": "ABD ve Çin arasındaki ticaret savaşının son 2 yıldaki gelişmelerini ve küresel piyasalara etkisini değerlendir.",
+    "category": "uluslararası",
+    "model_level": "medium",
+    "model_name": "qwen2.5:7b",
+    "orchestration": "cot",
+    "knowledge_level": "comprehensive",
+    "success": false,
+    "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı",
+    "result": {
+      "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı"
+    },
+    "elapsed_seconds": 2.04,
+    "user_score": null
+  },
+  {
+    "timestamp": "2026-03-05T17:42:51.259556",
+    "query_id": 2,
+    "query": "ABD ve Çin arasındaki ticaret savaşının son 2 yıldaki gelişmelerini ve küresel piyasalara etkisini değerlendir.",
+    "category": "uluslararası",
+    "model_level": "medium",
+    "model_name": "qwen2.5:7b",
+    "orchestration": "react",
+    "knowledge_level": "empty",
+    "success": false,
+    "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı",
+    "result": {
+      "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı"
+    },
+    "elapsed_seconds": 2.04,
+    "user_score": null
+  },
+  {
+    "timestamp": "2026-03-05T17:42:53.680181",
+    "query_id": 2,
+    "query": "ABD ve Çin arasındaki ticaret savaşının son 2 yıldaki gelişmelerini ve küresel piyasalara etkisini değerlendir.",
+    "category": "uluslararası",
+    "model_level": "medium",
+    "model_name": "qwen2.5:7b",
+    "orchestration": "react",
+    "knowledge_level": "basic",
+    "success": false,
+    "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı",
+    "result": {
+      "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı"
+    },
+    "elapsed_seconds": 2.02,
+    "user_score": null
+  },
+  {
+    "timestamp": "2026-03-05T17:42:56.087471",
+    "query_id": 2,
+    "query": "ABD ve Çin arasındaki ticaret savaşının son 2 yıldaki gelişmelerini ve küresel piyasalara etkisini değerlendir.",
+    "category": "uluslararası",
+    "model_level": "medium",
+    "model_name": "qwen2.5:7b",
+    "orchestration": "react",
+    "knowledge_level": "comprehensive",
+    "success": false,
+    "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı",
+    "result": {
+      "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı"
+    },
+    "elapsed_seconds": 2.04,
+    "user_score": null
+  },
+  {
+    "timestamp": "2026-03-05T17:42:58.511802",
+    "query_id": 2,
+    "query": "ABD ve Çin arasındaki ticaret savaşının son 2 yıldaki gelişmelerini ve küresel piyasalara etkisini değerlendir.",
+    "category": "uluslararası",
+    "model_level": "medium",
+    "model_name": "qwen2.5:7b",
+    "orchestration": "rewoo",
+    "knowledge_level": "empty",
+    "success": false,
+    "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı",
+    "result": {
+      "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı"
+    },
+    "elapsed_seconds": 2.05,
+    "user_score": null
+  },
+  {
+    "timestamp": "2026-03-05T17:43:00.925118",
+    "query_id": 2,
+    "query": "ABD ve Çin arasındaki ticaret savaşının son 2 yıldaki gelişmelerini ve küresel piyasalara etkisini değerlendir.",
+    "category": "uluslararası",
+    "model_level": "medium",
+    "model_name": "qwen2.5:7b",
+    "orchestration": "rewoo",
+    "knowledge_level": "basic",
+    "success": false,
+    "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı",
+    "result": {
+      "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı"
+    },
+    "elapsed_seconds": 2.04,
+    "user_score": null
+  },
+  {
+    "timestamp": "2026-03-05T17:43:03.332182",
+    "query_id": 2,
+    "query": "ABD ve Çin arasındaki ticaret savaşının son 2 yıldaki gelişmelerini ve küresel piyasalara etkisini değerlendir.",
+    "category": "uluslararası",
+    "model_level": "medium",
+    "model_name": "qwen2.5:7b",
+    "orchestration": "rewoo",
+    "knowledge_level": "comprehensive",
+    "success": false,
+    "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı",
+    "result": {
+      "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı"
+    },
+    "elapsed_seconds": 2.03,
+    "user_score": null
+  },
+  {
+    "timestamp": "2026-03-05T17:43:05.746817",
+    "query_id": 2,
+    "query": "ABD ve Çin arasındaki ticaret savaşının son 2 yıldaki gelişmelerini ve küresel piyasalara etkisini değerlendir.",
+    "category": "uluslararası",
+    "model_level": "medium",
+    "model_name": "qwen2.5:7b",
+    "orchestration": "reflexion",
+    "knowledge_level": "empty",
+    "success": false,
+    "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı",
+    "result": {
+      "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı"
+    },
+    "elapsed_seconds": 2.04,
+    "user_score": null
+  },
+  {
+    "timestamp": "2026-03-05T17:43:08.169561",
+    "query_id": 2,
+    "query": "ABD ve Çin arasındaki ticaret savaşının son 2 yıldaki gelişmelerini ve küresel piyasalara etkisini değerlendir.",
+    "category": "uluslararası",
+    "model_level": "medium",
+    "model_name": "qwen2.5:7b",
+    "orchestration": "reflexion",
+    "knowledge_level": "basic",
+    "success": false,
+    "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı",
+    "result": {
+      "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı"
+    },
+    "elapsed_seconds": 2.05,
+    "user_score": null
+  },
+  {
+    "timestamp": "2026-03-05T17:43:10.588933",
+    "query_id": 2,
+    "query": "ABD ve Çin arasındaki ticaret savaşının son 2 yıldaki gelişmelerini ve küresel piyasalara etkisini değerlendir.",
+    "category": "uluslararası",
+    "model_level": "medium",
+    "model_name": "qwen2.5:7b",
+    "orchestration": "reflexion",
+    "knowledge_level": "comprehensive",
+    "success": false,
+    "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı",
+    "result": {
+      "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı"
+    },
+    "elapsed_seconds": 2.05,
+    "user_score": null
+  },
+  {
+    "timestamp": "2026-03-05T17:43:13.005048",
+    "query_id": 2,
+    "query": "ABD ve Çin arasındaki ticaret savaşının son 2 yıldaki gelişmelerini ve küresel piyasalara etkisini değerlendir.",
+    "category": "uluslararası",
+    "model_level": "dumb",
+    "model_name": "phi3:latest",
+    "orchestration": "cot",
+    "knowledge_level": "empty",
+    "success": false,
+    "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı",
+    "result": {
+      "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı"
+    },
+    "elapsed_seconds": 2.05,
+    "user_score": null
+  },
+  {
+    "timestamp": "2026-03-05T17:43:15.426831",
+    "query_id": 2,
+    "query": "ABD ve Çin arasındaki ticaret savaşının son 2 yıldaki gelişmelerini ve küresel piyasalara etkisini değerlendir.",
+    "category": "uluslararası",
+    "model_level": "dumb",
+    "model_name": "phi3:latest",
+    "orchestration": "cot",
+    "knowledge_level": "basic",
+    "success": false,
+    "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı",
+    "result": {
+      "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı"
+    },
+    "elapsed_seconds": 2.05,
+    "user_score": null
+  },
+  {
+    "timestamp": "2026-03-05T17:43:17.847429",
+    "query_id": 2,
+    "query": "ABD ve Çin arasındaki ticaret savaşının son 2 yıldaki gelişmelerini ve küresel piyasalara etkisini değerlendir.",
+    "category": "uluslararası",
+    "model_level": "dumb",
+    "model_name": "phi3:latest",
+    "orchestration": "cot",
+    "knowledge_level": "comprehensive",
+    "success": false,
+    "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı",
+    "result": {
+      "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı"
+    },
+    "elapsed_seconds": 2.05,
+    "user_score": null
+  },
+  {
+    "timestamp": "2026-03-05T17:43:20.267888",
+    "query_id": 2,
+    "query": "ABD ve Çin arasındaki ticaret savaşının son 2 yıldaki gelişmelerini ve küresel piyasalara etkisini değerlendir.",
+    "category": "uluslararası",
+    "model_level": "dumb",
+    "model_name": "phi3:latest",
+    "orchestration": "react",
+    "knowledge_level": "empty",
+    "success": false,
+    "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı",
+    "result": {
+      "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı"
+    },
+    "elapsed_seconds": 2.05,
+    "user_score": null
+  },
+  {
+    "timestamp": "2026-03-05T17:43:22.692911",
+    "query_id": 2,
+    "query": "ABD ve Çin arasındaki ticaret savaşının son 2 yıldaki gelişmelerini ve küresel piyasalara etkisini değerlendir.",
+    "category": "uluslararası",
+    "model_level": "dumb",
+    "model_name": "phi3:latest",
+    "orchestration": "react",
+    "knowledge_level": "basic",
+    "success": false,
+    "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı",
+    "result": {
+      "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı"
+    },
+    "elapsed_seconds": 2.05,
+    "user_score": null
+  },
+  {
+    "timestamp": "2026-03-05T17:43:25.123525",
+    "query_id": 2,
+    "query": "ABD ve Çin arasındaki ticaret savaşının son 2 yıldaki gelişmelerini ve küresel piyasalara etkisini değerlendir.",
+    "category": "uluslararası",
+    "model_level": "dumb",
+    "model_name": "phi3:latest",
+    "orchestration": "react",
+    "knowledge_level": "comprehensive",
+    "success": false,
+    "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı",
+    "result": {
+      "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı"
+    },
+    "elapsed_seconds": 2.04,
+    "user_score": null
+  },
+  {
+    "timestamp": "2026-03-05T17:43:27.545722",
+    "query_id": 2,
+    "query": "ABD ve Çin arasındaki ticaret savaşının son 2 yıldaki gelişmelerini ve küresel piyasalara etkisini değerlendir.",
+    "category": "uluslararası",
+    "model_level": "dumb",
+    "model_name": "phi3:latest",
+    "orchestration": "rewoo",
+    "knowledge_level": "empty",
+    "success": false,
+    "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı",
+    "result": {
+      "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı"
+    },
+    "elapsed_seconds": 2.04,
+    "user_score": null
+  },
+  {
+    "timestamp": "2026-03-05T17:43:29.945190",
+    "query_id": 2,
+    "query": "ABD ve Çin arasındaki ticaret savaşının son 2 yıldaki gelişmelerini ve küresel piyasalara etkisini değerlendir.",
+    "category": "uluslararası",
+    "model_level": "dumb",
+    "model_name": "phi3:latest",
+    "orchestration": "rewoo",
+    "knowledge_level": "basic",
+    "success": false,
+    "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı",
+    "result": {
+      "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı"
+    },
+    "elapsed_seconds": 2.03,
+    "user_score": null
+  },
+  {
+    "timestamp": "2026-03-05T17:43:32.359309",
+    "query_id": 2,
+    "query": "ABD ve Çin arasındaki ticaret savaşının son 2 yıldaki gelişmelerini ve küresel piyasalara etkisini değerlendir.",
+    "category": "uluslararası",
+    "model_level": "dumb",
+    "model_name": "phi3:latest",
+    "orchestration": "rewoo",
+    "knowledge_level": "comprehensive",
+    "success": false,
+    "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı",
+    "result": {
+      "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı"
+    },
+    "elapsed_seconds": 2.04,
+    "user_score": null
+  },
+  {
+    "timestamp": "2026-03-05T17:43:34.775820",
+    "query_id": 2,
+    "query": "ABD ve Çin arasındaki ticaret savaşının son 2 yıldaki gelişmelerini ve küresel piyasalara etkisini değerlendir.",
+    "category": "uluslararası",
+    "model_level": "dumb",
+    "model_name": "phi3:latest",
+    "orchestration": "reflexion",
+    "knowledge_level": "empty",
+    "success": false,
+    "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı",
+    "result": {
+      "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı"
+    },
+    "elapsed_seconds": 2.03,
+    "user_score": null
+  },
+  {
+    "timestamp": "2026-03-05T17:43:37.211919",
+    "query_id": 2,
+    "query": "ABD ve Çin arasındaki ticaret savaşının son 2 yıldaki gelişmelerini ve küresel piyasalara etkisini değerlendir.",
+    "category": "uluslararası",
+    "model_level": "dumb",
+    "model_name": "phi3:latest",
+    "orchestration": "reflexion",
+    "knowledge_level": "basic",
+    "success": false,
+    "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı",
+    "result": {
+      "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı"
+    },
+    "elapsed_seconds": 2.05,
+    "user_score": null
+  },
+  {
+    "timestamp": "2026-03-05T17:43:39.640523",
+    "query_id": 2,
+    "query": "ABD ve Çin arasındaki ticaret savaşının son 2 yıldaki gelişmelerini ve küresel piyasalara etkisini değerlendir.",
+    "category": "uluslararası",
+    "model_level": "dumb",
+    "model_name": "phi3:latest",
+    "orchestration": "reflexion",
+    "knowledge_level": "comprehensive",
+    "success": false,
+    "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı",
+    "result": {
+      "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı"
+    },
+    "elapsed_seconds": 2.05,
+    "user_score": null
+  }
+]

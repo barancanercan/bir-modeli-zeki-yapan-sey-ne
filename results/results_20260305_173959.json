@@ -1,0 +1,206 @@
+[
+  {
+    "timestamp": "2026-03-05T17:39:33.165112",
+    "query_id": 1,
+    "query": "Türkiye'nin 2023-2024 ekonomik performansını analiz et ve enflasyon, işsizlik ve büyüme oranları hakkında bilgi ver.",
+    "category": "ekonomi",
+    "model_level": "smart",
+    "model_name": "qwen3.5:latest",
+    "orchestration": "cot",
+    "knowledge_level": "comprehensive",
+    "success": false,
+    "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı",
+    "result": {
+      "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı"
+    },
+    "elapsed_seconds": 2.04,
+    "user_score": null
+  },
+  {
+    "timestamp": "2026-03-05T17:39:35.588955",
+    "query_id": 1,
+    "query": "Türkiye'nin 2023-2024 ekonomik performansını analiz et ve enflasyon, işsizlik ve büyüme oranları hakkında bilgi ver.",
+    "category": "ekonomi",
+    "model_level": "smart",
+    "model_name": "qwen3.5:latest",
+    "orchestration": "react",
+    "knowledge_level": "comprehensive",
+    "success": false,
+    "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı",
+    "result": {
+      "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı"
+    },
+    "elapsed_seconds": 2.05,
+    "user_score": null
+  },
+  {
+    "timestamp": "2026-03-05T17:39:38.007138",
+    "query_id": 1,
+    "query": "Türkiye'nin 2023-2024 ekonomik performansını analiz et ve enflasyon, işsizlik ve büyüme oranları hakkında bilgi ver.",
+    "category": "ekonomi",
+    "model_level": "smart",
+    "model_name": "qwen3.5:latest",
+    "orchestration": "rewoo",
+    "knowledge_level": "comprehensive",
+    "success": false,
+    "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı",
+    "result": {
+      "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı"
+    },
+    "elapsed_seconds": 2.04,
+    "user_score": null
+  },
+  {
+    "timestamp": "2026-03-05T17:39:40.427873",
+    "query_id": 1,
+    "query": "Türkiye'nin 2023-2024 ekonomik performansını analiz et ve enflasyon, işsizlik ve büyüme oranları hakkında bilgi ver.",
+    "category": "ekonomi",
+    "model_level": "smart",
+    "model_name": "qwen3.5:latest",
+    "orchestration": "reflexion",
+    "knowledge_level": "comprehensive",
+    "success": false,
+    "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı",
+    "result": {
+      "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı"
+    },
+    "elapsed_seconds": 2.04,
+    "user_score": null
+  },
+  {
+    "timestamp": "2026-03-05T17:39:42.837300",
+    "query_id": 1,
+    "query": "Türkiye'nin 2023-2024 ekonomik performansını analiz et ve enflasyon, işsizlik ve büyüme oranları hakkında bilgi ver.",
+    "category": "ekonomi",
+    "model_level": "medium",
+    "model_name": "qwen2.5:7b",
+    "orchestration": "cot",
+    "knowledge_level": "comprehensive",
+    "success": false,
+    "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı",
+    "result": {
+      "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı"
+    },
+    "elapsed_seconds": 2.04,
+    "user_score": null
+  },
+  {
+    "timestamp": "2026-03-05T17:39:45.252089",
+    "query_id": 1,
+    "query": "Türkiye'nin 2023-2024 ekonomik performansını analiz et ve enflasyon, işsizlik ve büyüme oranları hakkında bilgi ver.",
+    "category": "ekonomi",
+    "model_level": "medium",
+    "model_name": "qwen2.5:7b",
+    "orchestration": "react",
+    "knowledge_level": "comprehensive",
+    "success": false,
+    "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı",
+    "result": {
+      "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı"
+    },
+    "elapsed_seconds": 2.04,
+    "user_score": null
+  },
+  {
+    "timestamp": "2026-03-05T17:39:47.656818",
+    "query_id": 1,
+    "query": "Türkiye'nin 2023-2024 ekonomik performansını analiz et ve enflasyon, işsizlik ve büyüme oranları hakkında bilgi ver.",
+    "category": "ekonomi",
+    "model_level": "medium",
+    "model_name": "qwen2.5:7b",
+    "orchestration": "rewoo",
+    "knowledge_level": "comprehensive",
+    "success": false,
+    "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı",
+    "result": {
+      "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı"
+    },
+    "elapsed_seconds": 2.03,
+    "user_score": null
+  },
+  {
+    "timestamp": "2026-03-05T17:39:50.085963",
+    "query_id": 1,
+    "query": "Türkiye'nin 2023-2024 ekonomik performansını analiz et ve enflasyon, işsizlik ve büyüme oranları hakkında bilgi ver.",
+    "category": "ekonomi",
+    "model_level": "medium",
+    "model_name": "qwen2.5:7b",
+    "orchestration": "reflexion",
+    "knowledge_level": "comprehensive",
+    "success": false,
+    "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı",
+    "result": {
+      "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı"
+    },
+    "elapsed_seconds": 2.05,
+    "user_score": null
+  },
+  {
+    "timestamp": "2026-03-05T17:39:52.482884",
+    "query_id": 1,
+    "query": "Türkiye'nin 2023-2024 ekonomik performansını analiz et ve enflasyon, işsizlik ve büyüme oranları hakkında bilgi ver.",
+    "category": "ekonomi",
+    "model_level": "dumb",
+    "model_name": "phi3:latest",
+    "orchestration": "cot",
+    "knowledge_level": "comprehensive",
+    "success": false,
+    "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı",
+    "result": {
+      "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı"
+    },
+    "elapsed_seconds": 2.03,
+    "user_score": null
+  },
+  {
+    "timestamp": "2026-03-05T17:39:54.909108",
+    "query_id": 1,
+    "query": "Türkiye'nin 2023-2024 ekonomik performansını analiz et ve enflasyon, işsizlik ve büyüme oranları hakkında bilgi ver.",
+    "category": "ekonomi",
+    "model_level": "dumb",
+    "model_name": "phi3:latest",
+    "orchestration": "react",
+    "knowledge_level": "comprehensive",
+    "success": false,
+    "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı",
+    "result": {
+      "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı"
+    },
+    "elapsed_seconds": 2.05,
+    "user_score": null
+  },
+  {
+    "timestamp": "2026-03-05T17:39:57.321073",
+    "query_id": 1,
+    "query": "Türkiye'nin 2023-2024 ekonomik performansını analiz et ve enflasyon, işsizlik ve büyüme oranları hakkında bilgi ver.",
+    "category": "ekonomi",
+    "model_level": "dumb",
+    "model_name": "phi3:latest",
+    "orchestration": "rewoo",
+    "knowledge_level": "comprehensive",
+    "success": false,
+    "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı",
+    "result": {
+      "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı"
+    },
+    "elapsed_seconds": 2.04,
+    "user_score": null
+  },
+  {
+    "timestamp": "2026-03-05T17:39:59.743068",
+    "query_id": 1,
+    "query": "Türkiye'nin 2023-2024 ekonomik performansını analiz et ve enflasyon, işsizlik ve büyüme oranları hakkında bilgi ver.",
+    "category": "ekonomi",
+    "model_level": "dumb",
+    "model_name": "phi3:latest",
+    "orchestration": "reflexion",
+    "knowledge_level": "comprehensive",
+    "success": false,
+    "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı",
+    "result": {
+      "error": "[WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı"
+    },
+    "elapsed_seconds": 2.05,
+    "user_score": null
+  }
+]

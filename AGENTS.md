@@ -23,6 +23,87 @@ source .venv/bin/activate  # Linux/Mac
 pip install -r requirements.txt
 ```
 
+---
+
+## 🤖 Agent Swarm Kullanımı
+
+### Meta-Agent Swarm (Önerilen)
+```bash
+# Tam deneyi agent swarm ile çalıştır
+python -m experiment.swarm
+
+# Limitli çalıştır
+python -m experiment.swarm --limit 2
+
+# Puanlama modu
+python -m experiment.swarm --score
+```
+
+---
+
+## 👑 Agent Yapısı
+
+### Agent 1: 🇹🇷 Türkiye Siyaseti Uzmanı
+**Dosya**: `experiment/agents/politics_expert.py`
+
+```python
+from experiment.agents import PoliticsExpert
+
+expert = PoliticsExpert()
+
+# FAISS index oluştur
+expert.build_index()
+
+# Semantic search
+results = expert.search("Türkiye ekonomi 2024")
+
+# Bağlam oluştur
+context = expert.get_context_for_query("Soru?", max_docs=5)
+```
+
+### Agent 2: 🔬 Bilimsel Denetim Uzmanı
+**Dosya**: `experiment/agents/science_expert.py`
+
+```python
+from experiment.agents import ScienceExpert
+
+expert = ScienceExpert()
+
+# Sonuçları yükle
+results = expert.load_results()
+
+# Analiz raporu oluştur
+report = expert.generate_report(results)
+
+# Kaydet
+expert.save_report(results, "analysis.json")
+```
+
+**İstatistiksel Testler**:
+- ANOVA (f_oneway)
+- t-test (ttest_ind)
+- Effect Size (Cohen's d)
+- Confidence Intervals
+- Correlation (Pearson, Spearman)
+
+### Agent 3: 💻 Kod/ML Mimarisi Uzmanı
+**Dosya**: `experiment/agents/code_expert.py`
+
+```python
+from experiment.agents import ToolCallingReAct
+
+# Tool calling ile ReAct
+react = ToolCallingReAct("phi3:latest", max_iterations=5)
+result = react.run("Soru", knowledge_list)
+```
+
+**Özellikler**:
+- Gerçek tool calling (LangChain tools)
+- Retry with exponential backoff
+- Graceful degradation
+
+---
+
 ## Deneyi Çalıştırma
 
 ### Tam Deney (Tüm Kombinasyonlar)
@@ -75,6 +156,23 @@ r = ExperimentRunner()
 print(r.get_summary_table())
 ```
 
+### İstatistiksel Analiz
+```python
+from experiment.agents import ScienceExpert
+
+expert = ScienceExpert()
+results = expert.load_results()
+
+# Model bazlı analiz
+model_analysis = expert.analyze_by_model(results)
+
+# Orkestrasyon analizi
+orch_analysis = expert.analyze_by_orchestration(results)
+
+# Tutarlılık skoru
+consistency = expert.calculate_consistency(results)
+```
+
 ## Konfigürasyon
 
 `config.yaml` dosyasını düzenleyebilirsiniz:
@@ -90,7 +188,14 @@ orchestrations:
   - react
   - rewoo
   - reflexion
+
+knowledge_levels:
+  - empty
+  - basic
+  - comprehensive
 ```
+
+---
 
 ## Yeni Orkestrasyon Ekleme
 
