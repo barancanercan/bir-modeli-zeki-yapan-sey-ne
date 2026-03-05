@@ -19,22 +19,20 @@ class PoliticsExpert:
     - RAG sistemi oluşturma
     """
     
-    def __init__(self, embedding_model: str = None):
-        # Use a model that exists or fallback to None (simple mode)
-        available_models = ["nomic-embed-text", "mxbai-embed-large"]
-        
-        # Try to find an available embedding model
+    def __init__(self, embedding_model: str = "nomic-embed-text:latest"):
+        # Try to use embedding model, fallback to None if fails
         self.embedding_model = embedding_model
         self.embeddings = None
-        if embedding_model:
-            try:
-                self.embeddings = OllamaEmbeddings(model=embedding_model)
-                # Test if it works
-                self.embeddings.embed_query("test")
-            except Exception as e:
-                print(f"Embedding model not available: {e}")
-                self.embeddings = None
-                self.embedding_model = None
+        
+        try:
+            self.embeddings = OllamaEmbeddings(model=embedding_model)
+            # Test if it works
+            self.embeddings.embed_query("test")
+            print(f"Embedding model aktif: {embedding_model}")
+        except Exception as e:
+            print(f"Embedding model not available: {e}")
+            self.embeddings = None
+            self.embedding_model = None
         
         self.index: Optional[faiss.IndexFlatL2] = None
         self.documents: List[Dict] = []
