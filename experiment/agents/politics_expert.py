@@ -19,9 +19,23 @@ class PoliticsExpert:
     - RAG sistemi oluşturma
     """
     
-    def __init__(self, embedding_model: str = "nomic-embed-text:latest"):
+    def __init__(self, embedding_model: str = None):
+        # Use a model that exists or fallback to None (simple mode)
+        available_models = ["nomic-embed-text", "mxbai-embed-large"]
+        
+        # Try to find an available embedding model
         self.embedding_model = embedding_model
-        self.embeddings = OllamaEmbeddings(model=embedding_model)
+        self.embeddings = None
+        if embedding_model:
+            try:
+                self.embeddings = OllamaEmbeddings(model=embedding_model)
+                # Test if it works
+                self.embeddings.embed_query("test")
+            except Exception as e:
+                print(f"Embedding model not available: {e}")
+                self.embeddings = None
+                self.embedding_model = None
+        
         self.index: Optional[faiss.IndexFlatL2] = None
         self.documents: List[Dict] = []
         self.metadata: List[Dict] = []
@@ -154,6 +168,16 @@ Rusya tehdidi vurgusu arttı. Pasifik vurgusu yok.""",
         self.documents.extend(self.add_g2024_data())
         self.documents = self.add_expected_answers(self.documents)
         
+        # Simple mode - just save documents without vector index
+        if self.embeddings is None:
+            print("Embedding model yok - basit mod çalışıyor")
+            docs_path = output_dir / "documents.json"
+            with open(docs_path, "w", encoding="utf-8") as f:
+                json.dump(self.documents, f, ensure_ascii=False, indent=2)
+            print(f"Dokümanlar kaydedildi: {len(self.documents)}")
+            self.index = None
+            return None
+        
         # Embeddings oluştur
         texts = [doc["content"] for doc in self.documents]
         vectors = self.embeddings.embed_documents(texts)
@@ -174,6 +198,43 @@ Rusya tehdidi vurgusu arttı. Pasifik vurgusu yok.""",
     
     def search(self, query: str, k: int = 5) -> List[Dict]:
         """Semantic search yap"""
+        
+        # Simple keyword-based search fallback
+        if self.index is None or self.embeddings is None:
+            # Load documents if not loaded
+            if not self.documents:
+                docs_path = Path("data/faiss_index/documents.json")
+                if docs_path.exists():
+                    with open(docs_path, "r", encoding="utf-8") as f:
+                        self.documents = json.load(f)
+            
+            # Simple keyword matching
+            query_lower = query.lower()
+            results = []
+            for doc in self.documents:
+                # Score based on keyword overlap
+                score = 0
+                content_lower = doc.get("content", "").lower()
+                topic_lower = doc.get("topic", "").lower()
+                
+                # Count keyword matches
+                for word in query_lower.split():
+                    if len(word) > 3:  # Skip short words
+                        if word in content_lower:
+                            score += 1
+                        if word in topic_lower:
+                            score += 2
+                
+                if score > 0:
+                    result = doc.copy()
+                    result["score"] = score
+                    results.append(result)
+            
+            # Sort by score and return top k
+            results.sort(key=lambda x: x.get("score", 0), reverse=True)
+            return results[:k]
+        
+        # FAISS vector search
         if self.index is None:
             self.build_index()
         
