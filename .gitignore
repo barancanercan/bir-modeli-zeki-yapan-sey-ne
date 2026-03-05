@@ -27,3 +27,6 @@ Thumbs.db
 
 # Logs
 *.log
+
+# Posts (for personal publishing)
+posts/

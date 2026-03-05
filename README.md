@@ -8,7 +8,19 @@
 [![FAISS](https://img.shields.io/badge/FAISS-VectorDB-blue)](https://github.com/facebookresearch/faiss)
 [![scipy](https://img.shields.io/badge/scipy-Statistics-green)](https://scipy.org/)
 
-Bu proje, bir LLM sisteminin "zeka" düzeyini belirleyen faktörleri test eden kapsamlı bir deneydir.
+Bu proje, bir LLM sisteminin "zeka" düzeyini belirleyen faktörleri test eden kapsamlı bir ampirik deneydir.
+
+---
+
+## 🎯 Soru
+
+Bir LLM sistemini "zeki" yapan şey tam olarak nedir?
+
+- **Model** mi? (Daha büyük, daha güçlü model)
+- **Veri** mi? (Daha fazla bilgi, RAG)
+- **Orkestrasyon** mu? (Nasıl düşünüyor, CoT, ReAct, Reflexion)
+
+Bu deney, bu üç faktörün etkileşimini ölçüyor.
 
 ---
 
@@ -21,41 +33,37 @@ Bu proje **4 uzman agent** ve **1 meta-agent** kullanarak çalışır:
 │                    👑 Meta-Agent Swarm                          │
 │                 (experiment/swarm.py)                           │
 ├─────────────────────────────────────────────────────────────────┤
-│                                                                 │
-│  ┌──────────────┐    ┌──────────────┐    ┌──────────────┐    │
-│  │   Agent 1    │    │   Agent 2    │    │   Agent 3    │    │
-│  │ 🇹🇷 Siyaset  │    │  🔬 Bilim    │    │  💻 Kod/ML   │    │
-│  │  Uzmanı      │    │  Denetçi     │    │  Mimarisi    │    │
-│  └──────────────┘    └──────────────┘    └──────────────┘    │
+│  ┌──────────────┐    ┌──────────────┐    ┌──────────────┐   │
+│  │   Agent 1    │    │   Agent 2    │    │   Agent 3    │   │
+│  │ 🇹🇷 Siyaset  │    │  🔬 Bilim    │    │  💻 Kod/ML   │   │
+│  │  Uzmanı      │    │  Denetçi     │    │  Mimarisi    │   │
+│  └──────────────┘    └──────────────┘    └──────────────┘   │
 │         │                    │                    │            │
 │         ▼                    ▼                    ▼            │
 │  ┌──────────────┐    ┌──────────────┐    ┌──────────────┐    │
-│  │  + FAISS RAG │    │  + scipy     │    │+ Tool Calling│    │
-│  │  + Güncel    │    │  + ANOVA     │    │  + Retry     │    │
-│  │    Veri      │    │  + Metrics   │    │  + Async     │    │
+│  │  + FAISS RAG │    │  + scipy    │    │+ Tool Calling│    │
+│  │  + Güncel    │    │  + ANOVA    │    │  + Retry    │    │
+│  │    Veri      │    │  + Metrics  │    │  + Async    │    │
 │  └──────────────┘    └──────────────┘    └──────────────┘    │
-│                                                                 │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
 ### Agent 1: 🇹🇷 Türkiye Siyaseti Uzmanı
 - **Dosya**: `experiment/agents/politics_expert.py`
-- **Görev**: Knowledge Base genişletme, RAG sistemi kurulumu
-- **Teknoloji**: FAISS vector database, semantic search
+- FAISS vector database, semantic search
+- 2024-2025 güncel siyasi veriler
 
 ### Agent 2: 🔬 Bilimsel Denetim Uzmanı
 - **Dosya**: `experiment/agents/science_expert.py`
-- **Görev**: Deney tasarımı, istatistiksel analiz
-- **Teknoloji**: scipy, ANOVA, t-test, effect size, confidence intervals
+- scipy, ANOVA, t-test, Cohen's d, confidence intervals
 
 ### Agent 3: 💻 Kod/ML Mimarisi Uzmanı
 - **Dosya**: `experiment/agents/code_expert.py`
-- **Görev**: Kod iyileştirme, tool calling, error handling
-- **Teknoloji**: Real ReAct with tools, retry logic, async execution
+- Real tool calling (LangChain), retry, async execution
 
 ### Agent 4: 👑 Meta-Agent Swarm Orchestrator
 - **Dosya**: `experiment/swarm.py`
-- **Görev**: Tüm agentları koordinasyon, workflow yönetimi
+- 5-phase workflow, checkpoint/resume
 
 ---
 
@@ -69,15 +77,16 @@ Bu proje **4 uzman agent** ve **1 meta-agent** kullanarak çalışır:
 | **Veri (Knowledge Base)** | Empty, Basic, Comprehensive, FAISS-RAG |
 | **Orkestrasyon** | CoT, ReAct (tool calling), ReWOO, Reflexion |
 
-### Metrikler (Gelişmiş)
+**Toplam Kombinasyon**: 3 × 3 × 4 × 10 = **360 deney**
+
+### Metrikler
 
 | Metrik | Açıklama |
 |--------|-----------|
 | Task Completion | Görev tamamlandı mı? |
 | Latency | Toplam süre (saniye) |
-| First Token Time | İlk token süresi |
 | Token Count | Input/output token sayısı |
-| Consistency Score | Aynı soru 3 kez → varyans |
+| Consistency Score | Aynı soru x3 → varyans |
 | User Score | Manuel kalite puanı (1-10) |
 | Statistical Sig. | p-value, effect size |
 
@@ -92,10 +101,13 @@ pip install -r requirements.txt
 # 2. Ollama modellerini kontrol et
 ollama list
 
-# 3. FAISS index oluştur (Agent 1)
-python -c "from experiment.agents.politics_expert import PoliticsExpert; p = PoliticsExpert(); p.build_index()"
+# 3. Embedding modeli indir (FAISS için)
+ollama pull nomic-embed-text
 
-# 4. Meta-agent ile deneyi çalıştır
+# 4. FAISS index oluştur
+python -c "from experiment.agents import PoliticsExpert; p = PoliticsExpert(); p.build_index()"
+
+# 5. Deneyi çalıştır
 python -m experiment.swarm
 ```
 
@@ -112,48 +124,51 @@ python -m experiment.swarm
 ├── experiment/
 │   ├── swarm.py            # 👑 Meta-Agent Swarm Orchestrator
 │   ├── run_experiment.py   # Ana deney koordinatorü
-│   ├── score_results.py    # Manuel puanlama aracı
+│   ├── score_results.py   # Manuel puanlama aracı
 │   │
 │   ├── agents/             # 🤖 Uzman Agentlar
-│   │   ├── __init__.py
-│   │   ├── politics_expert.py   # 🇹🇷 Agent 1: RAG + FAISS
+│   │   ├── politics_expert.py   # 🇹🇷 Agent 1: FAISS RAG
 │   │   ├── science_expert.py    # 🔬 Agent 2: Statistics
 │   │   └── code_expert.py       # 💻 Agent 3: Tool Calling
 │   │
-│   ├── orchestrations/     # Orkestrasyon modülleri
-│   │   ├── cot.py          # Chain of Thought
-│   │   ├── react.py        # ReAct (gerçek tool calling)
-│   │   ├── rewoo.py        # ReWOO
-│   │   └── reflexion.py    # Reflexion
-│   │
-│   └── metrics/            # Metrik sistemi
-│       ├── __init__.py
-│       ├── statistics.py   # scipy tabanlı istatistik
-│       └── evaluation.py   # LLM-as-Judge
+│   └── orchestrations/     # Orkestrasyon modülleri
+│       ├── cot.py          # Chain of Thought
+│       ├── react.py        # ReAct
+│       ├── rewoo.py        # ReWOO
+│       └── reflexion.py    # Reflexion
 │
 ├── data/
-│   ├── test_queries.json   # 10 test sorusu
+│   ├── test_queries.json  # 10 test sorusu
 │   ├── knowledge_bases/    # Bilgi tabanları
-│   │   ├── empty/
-│   │   ├── basic/
-│   │   └── comprehensive/
-│   └── raw/               # Ham veriler (Agent 1 tarafından işlenir)
+│   └── faiss_index/       # FAISS vector index
 │
-└── results/               # Sonuçlar (auto-generated)
-    ├── experiments/
-    └── analysis/
+└── results/                # Sonuçlar (auto-generated)
+    ├── checkpoint.json     # Checkpoint (resume için)
+    └── analysis/          # İstatistiksel analiz
 ```
 
 ---
 
-## 🎯 Kullanım
+## 📝 Kullanım
 
-### Meta-Agent Swarm (Önerilen)
+### Temel Komutlar
+
 ```bash
+# Tam deney (360 kombinasyon)
 python -m experiment.swarm
+
+# Limitli deney
+python -m experiment.swarm --limit 2
+
+# Checkpoint temizle ve baştan başla
+python -m experiment.swarm --clear
+
+# Puanlama modu
+python -m experiment.swarm --score
 ```
 
 ### Manuel Çalıştırma
+
 ```bash
 # Sadece deneyi çalıştır
 python -m experiment.run_experiment
@@ -161,22 +176,14 @@ python -m experiment.run_experiment
 # Sonuçları puanla
 python -m experiment.score_results
 
-# İstatistiksel analiz yap
-python -c "from experiment.metrics.statistics import StatisticalAnalyzer; s = StatisticalAnalyzer(); s.analyze()"
-```
-
-### FAISS Knowledge Base Oluştur
-```bash
-python -c "from experiment.agents.politics_expert import PoliticsExpert; p = PoliticsExpert(); p.build_index()"
+# İstatistiksel analiz
+python -c "from experiment.agents import ScienceExpert; s = ScienceExpert(); s.save_report(s.load_results())"
 ```
 
 ---
 
-## 🔬 Senaryo
+## 🔬 Test Senaryoları
 
-**Multi-step Research Agent**: Siyaset konulu araştırma sorularına yanıt üreten bir agent.
-
-### Test Soruları
 1. Türkiye 2023-2024 ekonomi analizi
 2. ABD-Çin ticaret savaşı
 3. 2024 AB seçimleri
@@ -190,30 +197,87 @@ python -c "from experiment.agents.politics_expert import PoliticsExpert; p = Pol
 
 ---
 
-## 📈 Örnek Çıktı
+## 📈 Örnek Sonuç
 
 ```json
 {
-  "experiment_id": "exp_001",
-  "timestamp": "2025-03-05T12:00:00",
-  "model": "qwen3.5:latest",
+  "query_id": 1,
+  "model_level": "smart",
   "orchestration": "react",
-  "knowledge_level": "faiss_rag",
+  "knowledge_level": "comprehensive",
+  "success": true,
+  "elapsed_seconds": 45.2,
+  "user_score": 8,
   "metrics": {
     "task_completion": true,
-    "latency_seconds": 4.2,
-    "first_token_time": 0.3,
+    "latency_seconds": 45.2,
     "input_tokens": 512,
-    "output_tokens": 256,
-    "consistency_score": 0.85,
-    "user_score": 8
+    "output_tokens": 256
+  }
+}
+```
+
+---
+
+## 📊 Örnek Analiz Çıktısı
+
+```python
+{
+  "summary": {
+    "total_experiments": 360,
+    "successful": 340,
+    "success_rate": 0.94
+  },
+  "model_analysis": {
+    "qwen3.5": {"mean_score": 7.2},
+    "qwen2.5:7b": {"mean_score": 6.1},
+    "phi3": {"mean_score": 4.8}
+  },
+  "orchestration_analysis": {
+    "ReAct": {"mean_score": 6.8},
+    "CoT": {"mean_score": 5.9},
+    "Reflexion": {"mean_score": 6.2},
+    "ReWOO": {"mean_score": 5.5}
   },
   "statistics": {
     "p_value": 0.023,
-    "effect_size": 0.45,
-    "confidence_interval": [0.72, 0.98]
+    "effect_size": 0.45
   }
 }
+```
+
+---
+
+## 🔧 Geliştirme
+
+### Yeni Orkestrasyon Ekleme
+
+```python
+# experiment/orchestrations/my_orch.py
+class MyOrchestration:
+    def __init__(self, model_name, temperature=0.7):
+        self.llm = ChatOllama(model=model_name, temperature=temperature)
+    
+    def run(self, query, knowledge=None):
+        # Implementasyon
+        return {"result": "..."}
+```
+
+### Konfigürasyon
+
+`config.yaml` dosyasını düzenleyin:
+
+```yaml
+models:
+  smart: "qwen3.5:latest"
+  medium: "qwen2.5:7b"
+  dumb: "phi3:latest"
+
+orchestrations:
+  - cot
+  - react
+  - rewoo
+  - reflexion
 ```
 
 ---
@@ -221,3 +285,12 @@ python -c "from experiment.agents.politics_expert import PoliticsExpert; p = Pol
 ## 📝 Lisans
 
 MIT License
+
+---
+
+## 🙏 Teşekkürler
+
+- [Ollama](https://ollama.ai/) - Local LLM inference
+- [LangChain](https://langchain.com/) - LLM framework
+- [FAISS](https://github.com/facebookresearch/faiss) - Vector similarity search
+- [scipy](https://scipy.org/) - Scientific computing
