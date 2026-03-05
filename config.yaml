@@ -1,0 +1,22 @@
+models:
+  smart: "qwen3.5:latest"
+  medium: "qwen2.5:7b"
+  dumb: "phi3:latest"
+
+orchestrations:
+  - cot
+  - react
+  - rewoo
+  - reflexion
+
+knowledge_levels:
+  - empty
+  - basic
+  - comprehensive
+
+experiment:
+  test_queries_file: "data/test_queries.json"
+  knowledge_base_dir: "data/knowledge_bases"
+  results_dir: "results"
+  max_iterations: 10
+  temperature: 0.7

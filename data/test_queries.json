@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "query": "Türkiye'nin 2023-2024 ekonomik performansını analiz et ve enflasyon, işsizlik ve büyüme oranları hakkında bilgi ver.",
+    "expected_complexity": "multi_step",
+    "category": "ekonomi"
+  },
+  {
+    "id": 2,
+    "query": "ABD ve Çin arasındaki ticaret savaşının son 2 yıldaki gelişmelerini ve küresel piyasalara etkisini değerlendir.",
+    "expected_complexity": "multi_step",
+    "category": "uluslararası"
+  },
+  {
+    "id": 3,
+    "query": "2024 Avrupa Parlamentosu seçimlerinin sonuçları ve AB'nin gelecek politikaları üzerindeki etkisi nedir?",
+    "expected_complexity": "multi_step",
+    "category": "avrupa"
+  },
+  {
+    "id": 4,
+    "query": "Türkiye'deki erken seçim tartışmalarının siyasi ve ekonomik motivasyonlarını analiz et.",
+    "expected_complexity": "reasoning",
+    "category": "iç_siyaset"
+  },
+  {
+    "id": 5,
+    "query": "Rusya-Ukrayna savaşının 2. yılındaki durumu ve barış görüşmelerinin olası senaryolarını değerlendir.",
+    "expected_complexity": "multi_step",
+    "category": "uluslararası"
+  },
+  {
+    "id": 6,
+    "query": "Yeşil enerji geçişinin Türkiye ekonomisine etkileri ve 2053 net zero hedefi hakkında bilgi ver.",
+    "expected_complexity": "multi_step",
+    "category": "enerji"
+  },
+  {
+    "id": 7,
+    "query": "Demokratik gerilemenin küresel eğilimleri ve Türkiye'nin demokrasi endeksindeki konumunu değerlendir.",
+    "expected_complexity": "reasoning",
+    "category": "demokrasi"
+  },
+  {
+    "id": 8,
+    "query": "2024 ABD başkanlık seçiminin sonuçları ve yeni yönetimin dış politika önceliklerini analiz et.",
+    "expected_complexity": "multi_step",
+    "category": "abd"
+  },
+  {
+    "id": 9,
+    "query": "Orta Doğu'daki su sorunu ve bölgesel çatışmalar üzerindeki etkisini değerlendir.",
+    "expected_complexity": "reasoning",
+    "category": "orta_doğu"
+  },
+  {
+    "id": 10,
+    "query": "Türkiye'nin NATO ve BRICS arasındaki denge politikasını ve stratejik tercihlerini analiz et.",
+    "expected_complexity": "reasoning",
+    "category": "dış_politika"
+  }
+]
