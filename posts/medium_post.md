@@ -30,7 +30,7 @@ Bu soruların peşine düştüm. Laboratuvar ortamında değil, gerçek dünya s
 
 - Farklı model boyutları (küçükten dev modellere)
 - Farklı mimari yaklaşımlar (tek model vs. çoklu agent)
-- Farklı bilgi erişim stratejileri (RAG, fine-tuning, sıfırdan)
+- Farklı bilgi erişim stratejileri (RAG seviyeleri: boş, temel, kapsamlı)
 - Farklı orkestrasyon teknikleri
 
 Sonuçlar beni de şaşırttı.
