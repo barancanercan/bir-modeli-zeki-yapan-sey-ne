@@ -293,3 +293,15 @@ Sizden ricam:
 ---
 
 **Etiketler:** #MachineLearning #LLM #AI #RAG #Orchestration #AgentSystems #ArtificialIntelligence
+
+---
+
+## Yazar Hakkında
+
+**Baran Can Ercan** — Yapay zeka, LLM sistemleri ve agent mimarileri üzerine araştırmalar yapıyorum. Karmaşık konuları anlaşılır kılmayı ve bulguları toplulukla paylaşmayı seviyorum.
+
+Diğer yazılarıma ve projelerime ulaşmak için:
+
+[Medium @barancanercan](https://medium.com/@barancanercan)
+
+Sorularınız veya işbirliği önerileriniz için Medium üzerinden bana ulaşabilirsiniz.
