@@ -1,89 +1,74 @@
-# 360 Deney Sonrası Şok Edici Bulgular: LLM'i Zeki Yapan Şey Ne?
+Geçen hafta 360 deney yaptım.
+
+Ve yıllardır inandığım bir şeyin yanlış olduğunu keşfettim.
+
+"Daha büyük model = daha iyi sonuç"
+
+Herkes böyle söylüyordu. Ben de öyle düşünüyordum.
+
+Sonra test ettim.
 
 ---
 
-**"Daha büyük model = daha zeki sonuç"** diye mi düşünüyordunuz?
+Orta boy model (qwen2.5:7b), "akıllı" modeli (qwen3.5) yendi.
 
-Ben de öyle düşünüyordum. Ta ki 360 deney yapana kadar.
+%93 kalite vs %87 kalite.
+19 saniye vs 262 saniye.
 
----
+13 kat daha hızlı. Ve daha kaliteli.
 
-## Araştırma Sorusu
-
-Bir LLM sistemini "zeki" yapan şey tam olarak nedir?
-
-- Model mi? (Parametre sayısı)
-- Veri mi? (RAG, bilgi tabanı)
-- Orkestrasyon mu? (CoT, ReAct, Reflexion)
-
-Cevabı bulmak için **360 kombinasyon** test ettim.
+Nasıl mı?
 
 ---
 
-## Şok Edici Sonuçlar
+Sır "orkestrasyon" denen şeyde gizliydi.
 
-### Model Performansı
+Modele sadece "cevap ver" demek yerine,
+"Düşün, planla, uygula, kontrol et" dedim.
 
-| Model | Kalite | Süre |
-|-------|--------|------|
-| medium (qwen2.5:7b) | **%93** | 19s |
-| smart (qwen3.5) | %87 | 262s |
-| dumb (phi3) | %70 | 26s |
+Sonuç: Aynı model, %47'den %100'e çıktı.
 
-**Bulgu 1:** Büyük model 13x daha yavaş AMA daha kötü sonuç verdi!
-
-### Orkestrasyon (ASIL SÜRPRİZ!)
-
-| Strateji | Kalite |
-|----------|--------|
-| ReWOO | **%100** |
-| Reflexion | %99 |
-| CoT | %91 |
-| ReAct | %47 |
-
-**Bulgu 2:** Orkestrasyon, model seçiminden DAHA kritik çıktı!
-
-### RAG Paradoksu
-
-| Bilgi Seviyesi | Kalite |
-|----------------|--------|
-| empty (RAG yok) | **%87** |
-| basic | %83 |
-| comprehensive | %82 |
-
-**Bulgu 3:** Daha fazla bilgi = daha DÜŞÜK performans!
+Model değişmedi. Sadece nasıl düşündüğü değişti.
 
 ---
 
-## En İyi Kombinasyon
+En çılgın bulgu?
 
-**medium + reflexion + empty = %100 kalite, 12 saniye**
+3.8B parametreli küçücük bir model (phi3),
+doğru orkestrasyon ile %100 doğruluk yakaladı.
 
-Küçük model (phi3) bile doğru orkestrasyon ile %100 yakaladı!
-
----
-
-## Pratik Çıkarımlar
-
-1. En pahalı modeli almayın - orta boy yeterli
-2. RAG'ı varsayılan yapmayın - her zaman fayda sağlamıyor
-3. Orkestrasyon stratejisine yatırım yapın - asıl fark orada
-4. Küçük model + akıllı orkestrasyon > Büyük model + basit prompt
+Büyük modellerin yapamadığını yaptı.
 
 ---
 
-## Sonuç
+Bir de RAG paradoksunu keşfettim.
 
-**Bir modeli zeki yapan şey = Model + DOĞRU ORKESTRAsYON**
+"Daha fazla bilgi ver, daha iyi cevap alırsın" diyorlar.
 
-Zeka, ham güç değil - strateji ve uygulama kombinasyonudur.
+Test ettim: Bilgi tabanı boşken %87, dolu iken %82.
 
----
+Daha fazla bilgi = daha düşük performans.
 
-Tüm kod ve veriler açık kaynak. Link yorumlarda.
-
-Siz ne düşünüyorsunuz? Bu sonuçlar sizi şaşırttı mı?
+Çünkü model bilgi denizinde boğuldu.
 
 ---
 
-#ArtificialIntelligence #LLM #MachineLearning #AI #RAG #AgentSystems #Orchestration #Research #DataScience #TechInsights #AIResearch
+360 deney sonrası öğrendiğim 3 şey:
+
+1. En pahalı modeli almak çözüm değil
+2. RAG her zaman işe yaramıyor
+3. Modele "nasıl düşüneceğini" öğretmek, her şeyden önemli
+
+---
+
+Bir modeli zeki yapan şey parametre sayısı değil.
+
+Ona verdiğin düşünme stratejisi.
+
+---
+
+Tüm kodlar ve veriler açık kaynak, link yorumlarda.
+
+Sen hangi modeli kullanıyorsun ve nasıl orkestre ediyorsun?
+
+#YapayZeka #LLM #AI #MachineLearning #RAG #AgentSystems
