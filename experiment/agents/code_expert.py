@@ -17,62 +17,77 @@ class RetryableLLMError(Exception):
 class ToolCallingReAct:
     """
     Gerçek ReAct implementasyonu - Tool Calling ile
-    
+
     Özellikler:
     - LangChain tool decorators
     - Retry with exponential backoff
     - Graceful degradation
     - Tool execution tracking
     """
-    
-    def __init__(self, model_name: str, temperature: float = 0.7, max_iterations: int = 10):
+
+    def __init__(self, model_name: str, temperature: float = 0.7, max_iterations: int = 10, use_faiss: bool = True):
         self.model_name = model_name
         self.temperature = temperature
         self.max_iterations = max_iterations
-        
+        self.use_faiss = use_faiss  # FAISS kullanımını kontrol et
+
         self.llm = ChatOllama(
             model=model_name,
             temperature=temperature
         )
-        
+
         self.tools = self._create_tools()
-        self.llm_with_tools = self.llm.bind_tools(self.tools)
+        self.supports_tools = True
+
+        # Tool calling desteğini kontrol et (phi3 gibi küçük modeller desteklemeyebilir)
+        try:
+            self.llm_with_tools = self.llm.bind_tools(self.tools)
+        except Exception as e:
+            # Tool calling desteklenmiyor, fallback moda geç
+            self.supports_tools = False
+            self.llm_with_tools = self.llm
         
     def _create_tools(self) -> List:
         """Tool'ları oluştur"""
-        
+        use_faiss = self.use_faiss  # Closure için
+
         @tool
         def search_knowledge(query: str) -> str:
             """Siyasi konularda bilgi aramak için kullanılır."""
             from pathlib import Path
+
+            # FAISS kullanımı kapalıysa (empty knowledge level)
+            if not use_faiss:
+                return f"Bilgi tabanı devre dışı (empty mode). Kendi bilginle cevapla. Query: {query}"
+
             import faiss
             import numpy as np
             from langchain_ollama import OllamaEmbeddings
-            
+
             # Try to load FAISS index
             index_path = Path("data/faiss_index/politics.index")
             docs_path = Path("data/faiss_index/documents.json")
-            
+
             if not index_path.exists() or not docs_path.exists():
                 return f"Knowledge base bulunamadı. Query: {query}"
-            
+
             try:
                 embeddings = OllamaEmbeddings(model="nomic-embed-text:latest")
                 index = faiss.read_index(str(index_path))
-                
+
                 with open(docs_path, "r", encoding="utf-8") as f:
                     documents = json.load(f)
-                
+
                 query_vector = embeddings.embed_query(query)
                 query_vector = np.array([query_vector]).astype('float32')
-                
+
                 distances, indices = index.search(query_vector, 3)
-                
+
                 results = []
                 for idx in indices[0]:
                     if idx < len(documents):
                         results.append(documents[idx]["content"][:200])
-                
+
                 return "\n\n".join(results) if results else "Bilgi bulunamadı"
             except Exception as e:
                 return f"Bilgi arama hatası: {str(e)}"
@@ -118,6 +133,46 @@ class ToolCallingReAct:
         
         return [search_knowledge, analyze_data, calculate_metric, generate_report]
     
+    def _run_simple_mode(self, query: str, context: str) -> Dict[str, Any]:
+        """Tool calling desteklemeyen modeller için basit mod"""
+        simple_prompt = f"""Sen bir araştırma asistanısın. Aşağıdaki soruyu cevapla.
+
+Soru: {query}
+{context}
+
+Cevabını düşünerek ve adım adım analiz ederek ver. Bilgi tabanında bilgi varsa onu kullan, yoksa kendi bilginle cevapla."""
+
+        try:
+            messages = [
+                SystemMessage(content="Sen yardımcı bir asistansın."),
+                HumanMessage(content=simple_prompt)
+            ]
+            response = self.llm.invoke(messages)
+            answer = response.content if response.content else "Cevap bulunamadı"
+
+            return {
+                "orchestration": "ReAct-SimpleMode",
+                "iterations": [{"step": 1, "final_answer": answer}],
+                "final_answer": answer,
+                "model": self.model_name,
+                "query": query,
+                "knowledge_used": 1 if context else 0,
+                "tool_calls": 0,
+                "fallback_mode": True
+            }
+        except Exception as e:
+            return {
+                "orchestration": "ReAct-SimpleMode",
+                "iterations": [{"step": 1, "error": str(e)}],
+                "final_answer": f"Hata: {str(e)}",
+                "model": self.model_name,
+                "query": query,
+                "knowledge_used": 0,
+                "tool_calls": 0,
+                "fallback_mode": True,
+                "error": str(e)
+            }
+
     @retry(
         stop=stop_after_attempt(3),
         wait=wait_exponential(multiplier=1, min=2, max=10),
@@ -137,7 +192,17 @@ class ToolCallingReAct:
     
     def run(self, query: str, knowledge: List[Dict] = None) -> Dict[str, Any]:
         """ReAct agent'ı çalıştır"""
-        
+
+        context = ""
+        if knowledge:
+            context = "\n\nBilgi Tabani:\n" + "\n".join([
+                f"- {k['topic']}: {k['content'][:200]}" for k in knowledge[:5]
+            ])
+
+        # Tool calling desteklenmiyorsa basit mod kullan
+        if not self.supports_tools:
+            return self._run_simple_mode(query, context)
+
         system_prompt = """Sen bir araştırma asistanısın. ReAct (Reason + Act) pattern'ini kullan.
 
 Adımlar:
@@ -160,21 +225,15 @@ Yanıtını JSON formatında ver:
     "observation": "tool sonucu",
     "final_answer": "son cevap"
 }"""
-        
-        context = ""
-        if knowledge:
-            context = "\n\nBilgi Tabani:\n" + "\n".join([
-                f"- {k['topic']}: {k['content'][:200]}" for k in knowledge[:5]
-            ])
-        
+
         messages = [
             SystemMessage(content=system_prompt),
             HumanMessage(content=f"Soru: {query}{context}")
         ]
-        
+
         iterations = []
         max_iters = min(self.max_iterations, 5)  # Limit for speed
-        
+
         for i in range(max_iters):
             try:
                 response = self._call_llm_with_retry(messages)

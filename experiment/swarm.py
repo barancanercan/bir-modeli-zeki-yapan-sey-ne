@@ -360,25 +360,40 @@ class MetaAgentSwarm:
     async def _run_single_experiment(self, query: Dict, model_level: str,
                                      orchestration: str, knowledge_level: str) -> Dict:
         """Tek bir deney çalıştır"""
-        from experiment.agents.code_expert import ToolCallingReAct
         from pathlib import Path
         import json
         import time
-        
+
         model = self.models[model_level]
-        
-        # Load knowledge (basic for now, can use FAISS)
+
+        # Load knowledge based on knowledge_level
         kb_dir = Path(self.config["experiment"]["knowledge_base_dir"])
         kb_file = kb_dir / knowledge_level / "politics.json"
-        
+
         knowledge = []
-        if kb_file.exists():
+        if knowledge_level != "empty" and kb_file.exists():
             with open(kb_file, "r", encoding="utf-8") as f:
                 knowledge = json.load(f)
-        
-        # Run with tool calling
+
+        # Select orchestrator based on orchestration parameter
         try:
-            orchestrator = ToolCallingReAct(model, max_iterations=3)
+            if orchestration == "cot":
+                from experiment.orchestrations.cot import ChainOfThought
+                orchestrator = ChainOfThought(model)
+            elif orchestration == "react":
+                from experiment.agents.code_expert import ToolCallingReAct
+                orchestrator = ToolCallingReAct(model, max_iterations=3, use_faiss=(knowledge_level != "empty"))
+            elif orchestration == "rewoo":
+                from experiment.orchestrations.rewoo import ReWOO
+                orchestrator = ReWOO(model)
+            elif orchestration == "reflexion":
+                from experiment.orchestrations.reflexion import Reflexion
+                orchestrator = Reflexion(model)
+            else:
+                # Fallback to CoT
+                from experiment.orchestrations.cot import ChainOfThought
+                orchestrator = ChainOfThought(model)
+
             start_time = time.time()
             result = orchestrator.run(query["query"], knowledge)
             elapsed = time.time() - start_time

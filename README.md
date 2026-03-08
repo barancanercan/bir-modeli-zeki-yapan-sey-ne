@@ -1,352 +1,337 @@
-# 🧠 LLM'i Zeki Yapan Şey Ne? 
+# Bir Modeli Zeki Yapan Şey Ne?
 
-> Ampirik bir deney: Model mi? Veri mi? Orkestrasyon mu?
+## Ampirik Bir Araştırma: Model, Veri ve Orkestrasyon Faktörlerinin Karşılaştırmalı Analizi
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python](https://img.shields.io/badge/Python-3.11+-blue.svg)](https://www.python.org/)
-[![Ollama](https://img.shields.io/badge/Ollama-Local-orange.svg)](https://ollama.ai/)
-[![FAISS](https://img.shields.io/badge/FAISS-VectorDB-blue)](https://github.com/facebookresearch/faiss)
-[![scipy](https://img.shields.io/badge/scipy-Statistics-green)](https://scipy.org/)
-
-Bu proje, bir LLM sisteminin "zeka" düzeyini belirleyen faktörleri test eden kapsamlı bir ampirik deneydir.
+[![Experiments](https://img.shields.io/badge/Experiments-360-green.svg)](#deney-sonuçları)
+[![Success Rate](https://img.shields.io/badge/Success%20Rate-99.4%25-brightgreen.svg)](#deney-sonuçları)
 
 ---
 
-## 🎯 Soru
+## Özet (Abstract)
 
-Bir LLM sistemini "zeki" yapan şey tam olarak nedir?
+Bu çalışma, Büyük Dil Modeli (LLM) sistemlerinin "zeka" düzeyini belirleyen faktörleri ampirik olarak test etmektedir. **360 bağımsız deney** üzerinden üç ana değişkenin (model kapasitesi, bilgi tabanı derinliği, orkestrasyon stratejisi) etkisi faktöriyel deney tasarımı ile ölçülmüştür.
 
-- **Model** mi? (Daha büyük, daha güçlü model)
-- **Veri** mi? (Daha fazla bilgi, RAG)
-- **Orkestrasyon** mu? (Nasıl düşünüyor, CoT, ReAct, Reflexion)
+**Temel Bulgular:**
+- Orkestrasyon stratejisi, model seçiminden daha kritik bir faktör olarak ortaya çıkmıştır
+- RAG (Retrieval-Augmented Generation) sistemi beklenen pozitif etkiyi göstermemiştir
+- Orta kapasiteli modeller, yüksek kapasiteli modellerden daha iyi performans sergilemiştir
+- Küçük modeller, doğru orkestrasyon ile %100 doğruluk elde edebilmektedir
 
-Bu deney, bu üç faktörün etkileşimini ölçüyor.
+**Anahtar Kelimeler:** LLM, Orkestrasyon, RAG, Chain of Thought, ReAct, ReWOO, Reflexion, Agent Systems
 
 ---
 
-## 🤖 Agent Swarm Mimarisi
+## 1. Giriş
 
-Bu proje **4 uzman agent** ve **1 meta-agent** kullanarak çalışır:
+### 1.1 Araştırma Sorusu
+
+> *"Bir LLM sistemini 'zeki' yapan şey tam olarak nedir?"*
+
+Bu soru, yapay zeka alanında kritik öneme sahiptir. Sektörde yaygın varsayımlar şunlardır:
+
+1. **Model Hipotezi:** Daha büyük parametre sayısı → Daha iyi performans
+2. **Veri Hipotezi:** Daha fazla harici bilgi (RAG) → Daha doğru cevaplar
+3. **Orkestrasyon Hipotezi:** İleri reasoning teknikleri → Üstün sonuçlar
+
+Bu çalışma, bu üç hipotezi kontrollü bir deney ortamında test etmektedir.
+
+### 1.2 Hipotezler
+
+| Hipotez | Beklenti | Sonuç |
+|---------|----------|-------|
+| H1: Model > Orkestrasyon | Büyük model her zaman kazanır | **Reddedildi** |
+| H2: RAG > No-RAG | Bilgi tabanı kaliteyi artırır | **Reddedildi** |
+| H3: Orkestrasyon etkisi yok | Tüm stratejiler eşdeğer | **Reddedildi** |
+
+---
+
+## 2. Metodoloji
+
+### 2.1 Deney Tasarımı
+
+**Tam Faktöriyel Tasarım (Full Factorial Design)**
+
+Bu tasarım, her bağımsız değişkenin ana etkisini ve değişkenler arası etkileşimleri ölçmeye olanak tanır.
+
+```
+Deney Matrisi:
+├── Model Kapasitesi (3 seviye)
+│   ├── smart: qwen3.5 (~8B params, 6.6GB)
+│   ├── medium: qwen2.5:7b (7B params, 4.7GB)
+│   └── dumb: phi3:mini (3.8B params, 2.2GB)
+│
+├── Orkestrasyon Stratejisi (4 seviye)
+│   ├── Chain of Thought (CoT)
+│   ├── ReAct (Reason + Act)
+│   ├── ReWOO (Reasoning Without Observation)
+│   └── Reflexion (Self-Critique)
+│
+├── Bilgi Seviyesi (3 seviye)
+│   ├── empty: RAG devre dışı
+│   ├── basic: Temel bilgi tabanı
+│   └── comprehensive: Detaylı bilgi tabanı
+│
+└── Test Soruları (10 adet)
+    └── Türkiye siyasi/ekonomik konular
+
+Toplam: 3 × 4 × 3 × 10 = 360 deney
+```
+
+### 2.2 Teknik Altyapı
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                    👑 Meta-Agent Swarm                          │
-│                 (experiment/swarm.py)                           │
+│                    DENEY FRAMEWORK MİMARİSİ                     │
 ├─────────────────────────────────────────────────────────────────┤
-│  ┌──────────────┐    ┌──────────────┐    ┌──────────────┐   │
-│  │   Agent 1    │    │   Agent 2    │    │   Agent 3    │   │
-│  │ 🇹🇷 Siyaset  │    │  🔬 Bilim    │    │  💻 Kod/ML   │   │
-│  │  Uzmanı      │    │  Denetçi     │    │  Mimarisi    │   │
-│  └──────────────┘    └──────────────┘    └──────────────┘   │
-│         │                    │                    │            │
-│         ▼                    ▼                    ▼            │
-│  ┌──────────────┐    ┌──────────────┐    ┌──────────────┐    │
-│  │  + FAISS RAG │    │  + scipy    │    │+ Tool Calling│    │
-│  │  + Güncel    │    │  + ANOVA    │    │  + Retry    │    │
-│  │    Veri      │    │  + Metrics  │    │  + Async    │    │
-│  └──────────────┘    └──────────────┘    └──────────────┘    │
+│                                                                 │
+│  ┌─────────────────────────────────────────────────────────┐   │
+│  │              👑 Meta-Agent Swarm Orchestrator            │   │
+│  │                   (experiment/swarm.py)                  │   │
+│  │                                                          │   │
+│  │  Phase 1: Initialize → Phase 2: Validate → Phase 3: Execute │
+│  │  Phase 4: Analyze → Phase 5: Report                      │   │
+│  └─────────────────────────────────────────────────────────┘   │
+│                              │                                  │
+│          ┌──────────────────┼──────────────────┐               │
+│          ▼                  ▼                  ▼               │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐         │
+│  │   Agent 1    │  │   Agent 2    │  │   Agent 3    │         │
+│  │  🇹🇷 Politics │  │  🔬 Science  │  │  💻 Code/ML  │         │
+│  │    Expert    │  │   Expert     │  │   Expert     │         │
+│  ├──────────────┤  ├──────────────┤  ├──────────────┤         │
+│  │ • FAISS RAG  │  │ • scipy      │  │ • LangChain  │         │
+│  │ • Semantic   │  │ • ANOVA      │  │ • Tool Call  │         │
+│  │   Search     │  │ • t-test     │  │ • Retry      │         │
+│  │ • Embeddings │  │ • Effect Size│  │ • Async      │         │
+│  └──────────────┘  └──────────────┘  └──────────────┘         │
+│                                                                 │
+├─────────────────────────────────────────────────────────────────┤
+│  Infrastructure                                                 │
+│  ├── LLM Inference: Ollama (local deployment)                  │
+│  ├── Vector Search: FAISS (Facebook AI Similarity Search)      │
+│  ├── Orchestration: LangChain                                  │
+│  ├── Embedding: nomic-embed-text                               │
+│  └── Statistics: scipy, numpy                                  │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
-### Agent 1: 🇹🇷 Türkiye Siyaseti Uzmanı
-- **Dosya**: `experiment/agents/politics_expert.py`
-- FAISS vector database, semantic search
-- 2024-2025 güncel siyasi veriler
+### 2.3 Değerlendirme Metrikleri
 
-### Agent 2: 🔬 Bilimsel Denetim Uzmanı
-- **Dosya**: `experiment/agents/science_expert.py`
-- scipy, ANOVA, t-test, Cohen's d, confidence intervals
-
-### Agent 3: 💻 Kod/ML Mimarisi Uzmanı
-- **Dosya**: `experiment/agents/code_expert.py`
-- Real tool calling (LangChain), retry, async execution
-
-### Agent 4: 👑 Meta-Agent Swarm Orchestrator
-- **Dosya**: `experiment/swarm.py`
-- 5-phase workflow, checkpoint/resume
+| Metrik | Tanım | Ölçüm Yöntemi |
+|--------|-------|---------------|
+| **Başarı Oranı** | Task completion | Binary (0/1) |
+| **Kalite Skoru** | Cevap kalitesi | 0-100% (otomatik değerlendirme) |
+| **Latency** | Yanıt süresi | Saniye (end-to-end) |
+| **Consistency** | Tutarlılık | Aynı soru × 3 varyans |
 
 ---
 
-## 📊 Deney Tasarımı
+## 3. Deney Sonuçları
 
-### Test Edilen Faktörler
+### 3.1 Genel İstatistikler
 
-| Faktör | Değişkenler |
-|--------|-------------|
-| **Model** | qwen3.5 (6.6GB), qwen2.5:7b (4.7GB), phi3 (2.2GB) |
-| **Veri (Knowledge Base)** | Empty, Basic, Comprehensive, FAISS-RAG |
-| **Orkestrasyon** | CoT, ReAct (tool calling), ReWOO, Reflexion |
+| Metrik | Değer |
+|--------|-------|
+| Toplam Deney | 360 |
+| Başarılı | 358 |
+| Başarısız | 2 |
+| **Başarı Oranı** | **%99.4** |
 
-**Toplam Kombinasyon**: 3 × 3 × 4 × 10 = **360 deney**
+### 3.2 Model Performansı
 
-### Metrikler
+| Model | Başarı | Kalite | Ort. Süre | Verimlilik |
+|-------|--------|--------|-----------|------------|
+| **medium (qwen2.5:7b)** | 120/120 | **%93** | **19.1s** | En yüksek |
+| smart (qwen3.5) | 119/120 | %87 | 261.9s | Düşük (13.7x yavaş) |
+| dumb (phi3) | 119/120 | %70 | 26.0s | Orta |
 
-| Metrik | Açıklama |
-|--------|-----------|
-| Task Completion | Görev tamamlandı mı? |
-| Latency | Toplam süre (saniye) |
-| Token Count | Input/output token sayısı |
-| Consistency Score | Aynı soru x3 → varyans |
-| User Score | Manuel kalite puanı (1-10) |
-| Statistical Sig. | p-value, effect size |
+**Bulgu:** Orta kapasiteli model, hem kalite hem hız açısından en iyi performansı göstermiştir. Büyük model 13.7 kat daha yavaş çalışmasına rağmen daha düşük kalite üretmiştir.
+
+### 3.3 Orkestrasyon Performansı
+
+| Orkestrasyon | Kalite | Ort. Süre | Değerlendirme |
+|--------------|--------|-----------|---------------|
+| **ReWOO** | **%100** | 141.9s | En güvenilir |
+| **Reflexion** | **%99** | 118.1s | Çok iyi |
+| CoT | %91 | 111.9s | İyi |
+| ReAct | %47 | 37.3s | Sorunlu |
+
+**Bulgu:** Orkestrasyon stratejisi arasında dramatik farklar gözlemlenmiştir. ReWOO %100 doğruluk sağlarken, ReAct %47'de kalmıştır.
+
+### 3.4 Bilgi Seviyesi (RAG) Etkisi
+
+| Bilgi Seviyesi | Kalite | Ort. Süre |
+|----------------|--------|-----------|
+| **empty** | **%87** | 80.9s |
+| basic | %83 | 100.1s |
+| comprehensive | %82 | 126.0s |
+
+**Şaşırtıcı Bulgu:** Daha fazla bilgi, daha düşük performansa yol açmıştır. RAG sistemi beklenen pozitif etkiyi göstermemiştir.
+
+### 3.5 En İyi Kombinasyonlar
+
+| Sıra | Kombinasyon | Kalite | Süre |
+|------|-------------|--------|------|
+| 🥇 | medium + reflexion + empty | %100 | 11.9s |
+| 🥇 | medium + cot + empty | %100 | 19.8s |
+| 🥇 | medium + rewoo + empty | %100 | 37.5s |
+| 🥉 | **dumb + rewoo + empty** | **%100** | 39.0s |
+
+**Kritik Bulgu:** Küçük model (phi3), doğru orkestrasyon (ReWOO) ile %100 doğruluk elde etmiştir.
 
 ---
 
-## 🚀 Kurulum
+## 4. Tartışma
+
+### 4.1 Büyük Model Yanılgısı
+
+Sektörde yaygın "daha büyük = daha iyi" varsayımı bu çalışmada çürütülmüştür. Olası açıklamalar:
+
+1. **Overthinking:** Büyük modeller basit görevlerde aşırı düşünme eğilimi gösterebilir
+2. **Optimum Nokta:** Her görev için optimal bir model boyutu vardır
+3. **Hız-Kalite Dengesi:** Yavaş çalışma, kalite artışına dönüşmemektedir
+
+### 4.2 RAG Paradoksu
+
+RAG sisteminin olumsuz etkisi üç hipotezle açıklanabilir:
+
+1. **Gürültü Hipotezi:** Retrieve edilen bilgiler dikkat dağıtıcı olabilir
+2. **Self-Knowledge Üstünlüğü:** Modelin içsel bilgisi daha güvenilir olabilir
+3. **Implementation Quality:** Basit RAG implementasyonu zararlı olabilir
+
+### 4.3 Orkestrasyon Kritikliği
+
+ReWOO ve Reflexion'ın üstünlüğü, "nasıl düşünüldüğünün" "ne ile düşünüldüğünden" daha önemli olabileceğini göstermektedir.
+
+---
+
+## 5. Kurulum ve Kullanım
+
+### 5.1 Gereksinimler
 
 ```bash
-# 1. Bağımlılıkları yükle
+# Python 3.11+
 pip install -r requirements.txt
 
-# 2. Ollama modellerini kontrol et
-ollama list
-
-# 3. Embedding modeli indir (FAISS için)
+# Ollama modelleri
+ollama pull qwen2.5:7b
+ollama pull phi3:latest
 ollama pull nomic-embed-text
-
-# 4. FAISS index oluştur
-python -c "from experiment.agents import PoliticsExpert; p = PoliticsExpert(); p.build_index()"
-
-# 5. Deneyi çalıştır
-python -m experiment.swarm
 ```
 
----
-
-## 📁 Proje Yapısı
-
-```
-├── config.yaml              # Deney konfigürasyonu
-├── requirements.txt         # Python bağımlılıkları
-├── README.md               # Bu dosya
-├── AGENTS.md               # Agent dokümantasyonu
-│
-├── experiment/
-│   ├── swarm.py            # 👑 Meta-Agent Swarm Orchestrator
-│   ├── run_experiment.py   # Ana deney koordinatorü
-│   ├── score_results.py   # Manuel puanlama aracı
-│   │
-│   ├── agents/             # 🤖 Uzman Agentlar
-│   │   ├── politics_expert.py   # 🇹🇷 Agent 1: FAISS RAG
-│   │   ├── science_expert.py    # 🔬 Agent 2: Statistics
-│   │   └── code_expert.py       # 💻 Agent 3: Tool Calling
-│   │
-│   └── orchestrations/     # Orkestrasyon modülleri
-│       ├── cot.py          # Chain of Thought
-│       ├── react.py        # ReAct
-│       ├── rewoo.py        # ReWOO
-│       └── reflexion.py    # Reflexion
-│
-├── data/
-│   ├── test_queries.json  # 10 test sorusu
-│   ├── knowledge_bases/    # Bilgi tabanları
-│   └── faiss_index/       # FAISS vector index
-│
-└── results/                # Sonuçlar (auto-generated)
-    ├── checkpoint.json     # Checkpoint (resume için)
-    └── analysis/          # İstatistiksel analiz
-```
-
----
-
-## 📝 Kullanım
-
-### Temel Komutlar
+### 5.2 Deney Çalıştırma
 
 ```bash
 # Tam deney (360 kombinasyon)
 python -m experiment.swarm
 
-# Limitli deney
+# Sınırlı test
 python -m experiment.swarm --limit 2
 
-# Checkpoint temizle ve baştan başla
+# Checkpoint temizle
 python -m experiment.swarm --clear
 
 # Puanlama modu
 python -m experiment.swarm --score
 ```
 
-### Manuel Çalıştırma
+### 5.3 Proje Yapısı
 
-```bash
-# Sadece deneyi çalıştır
-python -m experiment.run_experiment
-
-# Sonuçları puanla
-python -m experiment.score_results
-
-# İstatistiksel analiz
-python -c "from experiment.agents import ScienceExpert; s = ScienceExpert(); s.save_report(s.load_results())"
+```
+bir-modeli-zeki-yapan-sey-ne/
+├── config.yaml                 # Deney konfigürasyonu
+├── requirements.txt            # Python bağımlılıkları
+├── experiment/
+│   ├── swarm.py               # Meta-Agent Orchestrator
+│   ├── agents/
+│   │   ├── politics_expert.py # FAISS RAG Agent
+│   │   ├── science_expert.py  # Statistics Agent
+│   │   └── code_expert.py     # Tool Calling Agent
+│   └── orchestrations/
+│       ├── cot.py             # Chain of Thought
+│       ├── react.py           # ReAct
+│       ├── rewoo.py           # ReWOO
+│       └── reflexion.py       # Reflexion
+├── data/
+│   ├── test_queries.json      # Test soruları
+│   ├── knowledge_bases/       # Bilgi tabanları
+│   └── faiss_index/           # Vector index
+├── results/
+│   ├── findings_report.md     # Bulgular raporu
+│   └── checkpoint.json        # Checkpoint
+└── posts/
+    ├── medium_post.md         # Medium makalesi
+    └── linkedin_post.md       # LinkedIn paylaşımı
 ```
 
 ---
 
-## 🔬 Test Senaryoları
+## 6. Sonuç
 
-1. Türkiye 2023-2024 ekonomi analizi
-2. ABD-Çin ticaret savaşı
-3. 2024 AB seçimleri
-4. Türkiye erken seçim tartışmaları
-5. Rusya-Ukrayna 2. yıl
-6. Yeşil enerji ve Türkiye 2053
-7. Küresel demokratik gerileme
-8. 2024 ABD başkanlık seçimi
-9. Orta Doğu su krizi
-10. Türkiye NATO-BRICS dengesi
+### 6.1 Ana Bulgular
 
----
+1. **Model seçimi önemli ama belirleyici değil** - Orta kapasiteli model en iyi sonucu verdi
+2. **Orkestrasyon kritik faktör** - ReWOO ve Reflexion dramatik fark yarattı
+3. **RAG her zaman çözüm değil** - Bilgi tabanı performansı düşürdü
+4. **Küçük model + doğru orkestrasyon = başarı** - phi3 + ReWOO = %100
 
-## 🎯 Nihai Sonuçlar
+### 6.2 Pratik Öneriler
 
-> Deney tamamlandı: **360 kombinasyon** test edildi
+| Senaryo | Önerilen Kombinasyon |
+|---------|---------------------|
+| Hız öncelikli | medium + reflexion + empty |
+| Kalite öncelikli | medium + rewoo + empty |
+| Düşük kaynak | dumb + rewoo + empty |
+| Genel kullanım | medium + cot + empty |
 
-### 1. Model En Kritik Faktör
+### 6.3 Araştırma Sorusunun Cevabı
 
-| Model | Kalite | Süre |
-|-------|--------|------|
-| **qwen2.5:7b (medium)** | **6.5/10** ⭐ | 18s |
-| qwen3.5 (smart) | 5.0/10 | 109s |
-| phi3 (dumb) | **0.0/10** ❌ | 0.02s |
+> **"Bir modeli zeki yapan şey nedir?"**
 
-**🤯 ŞOK**: En büyük model en iyi DEĞİL!
+**Cevap:** Model + Doğru Orkestrasyon
 
-### 2. Orkestrasyon Farkı Yok
-
-| Orkestrasyon | Kalite |
-|--------------|--------|
-| CoT | 3.9/10 |
-| ReAct | 3.9/10 |
-| ReWOO | 3.9/10 |
-| Reflexion | 3.7/10 |
-
-### 3. Bilgi (RAG) Etkisi Zayıf
-
-| Bilgi Seviyesi | Kalite |
-|-----------------|--------|
-| Empty | 4.2/10 |
-| Comprehensive | 4.0/10 |
-| Basic | 3.3/10 |
-
-### 4. En İyi Kombinasyon
-
-🥇 **qwen2.5:7b + CoT**: 7.0/10
+Zeka, ham güç değil - strateji ve uygulama kombinasyonudur.
 
 ---
 
-## ❓ Sonuç
+## 7. Gelecek Çalışmalar
 
-### ❌ Yanlış Bildiklerimiz:
-- "Daha büyük model = daha iyi"
-- "ReAct/Reflexion CoT'ten daha iyi"
-- "RAG her zaman kaliteyi artırır"
-
-### ✅ Gerçek:
-- **Model seçimi kritik** - phi3 tamamen başarısız
-- **Orta boy optimal** - hem hızlı hem kaliteli
-- **Basit orkestrasyon yeterli**
+- [ ] Daha fazla model testi (Llama, Mistral, Gemma)
+- [ ] Farklı domain'lerde deney (kod, matematik, yaratıcı yazı)
+- [ ] RAG optimizasyonu (chunking, reranking)
+- [ ] Hibrit orkestrasyon stratejileri
+- [ ] Maliyet analizi (token/performans)
 
 ---
 
-# 🧠 BİR MODELİ ZEKİ YAPAN ŞEY: MODELİN KENDİSİDİR - ORKESTRASYON DEĞİL, VERİ DEĞİL, SADECE MODELİN KENDİSİDİR!
+## 8. Referanslar
+
+1. Wei, J., et al. (2022). Chain-of-Thought Prompting Elicits Reasoning in Large Language Models
+2. Yao, S., et al. (2023). ReAct: Synergizing Reasoning and Acting in Language Models
+3. Xu, B., et al. (2023). ReWOO: Decoupling Reasoning from Observations for Efficient Augmented Language Models
+4. Shinn, N., et al. (2023). Reflexion: Language Agents with Verbal Reinforcement Learning
+5. Lewis, P., et al. (2020). Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks
 
 ---
 
-## 📈 Örnek Sonuç
+## Lisans
 
-```json
-{
-  "query_id": 1,
-  "model_level": "smart",
-  "orchestration": "react",
-  "knowledge_level": "comprehensive",
-  "success": true,
-  "elapsed_seconds": 45.2,
-  "user_score": 8,
-  "metrics": {
-    "task_completion": true,
-    "latency_seconds": 45.2,
-    "input_tokens": 512,
-    "output_tokens": 256
-  }
-}
-```
+MIT License - Detaylar için [LICENSE](LICENSE) dosyasına bakınız.
 
 ---
 
-## 📊 Örnek Analiz Çıktısı (Gerçek Sonuçlar)
+## Katkıda Bulunma
 
-```python
-{
-  "summary": {
-    "total_experiments": 360,
-    "all_completed": True
-  },
-  "model_analysis": {
-    "medium (qwen2.5:7b)": {"quality": "6.5/10", "avg_time": "18s"},
-    "smart (qwen3.5)": {"quality": "5.0/10", "avg_time": "109s"},
-    "dumb (phi3)": {"quality": "0.0/10", "avg_time": "0.02s"}
-  },
-  "orchestration_analysis": {
-    "CoT": {"quality": "3.9/10"},
-    "ReAct": {"quality": "3.9/10"},
-    "ReWOO": {"quality": "3.9/10"},
-    "Reflexion": {"quality": "3.7/10"}
-  },
-  "knowledge_analysis": {
-    "empty": {"quality": "4.2/10"},
-    "basic": {"quality": "3.3/10"},
-    "comprehensive": {"quality": "4.0/10"}
-  },
-  "best_combo": "medium + CoT = 7.0/10"
-}
-```
+1. Fork yapın
+2. Feature branch oluşturun (`git checkout -b feature/amazing-feature`)
+3. Commit yapın (`git commit -m 'Add amazing feature'`)
+4. Push yapın (`git push origin feature/amazing-feature`)
+5. Pull Request açın
 
 ---
 
-## 🔧 Geliştirme
+**Sonuç:** Bir modeli zeki yapan şey = **Model + Doğru Orkestrasyon**
 
-### Yeni Orkestrasyon Ekleme
-
-```python
-# experiment/orchestrations/my_orch.py
-class MyOrchestration:
-    def __init__(self, model_name, temperature=0.7):
-        self.llm = ChatOllama(model=model_name, temperature=temperature)
-    
-    def run(self, query, knowledge=None):
-        # Implementasyon
-        return {"result": "..."}
-```
-
-### Konfigürasyon
-
-`config.yaml` dosyasını düzenleyin:
-
-```yaml
-models:
-  smart: "qwen3.5:latest"
-  medium: "qwen2.5:7b"
-  dumb: "phi3:latest"
-
-orchestrations:
-  - cot
-  - react
-  - rewoo
-  - reflexion
-```
-
----
-
-## 📝 Lisans
-
-MIT License
-
----
-
-## 🙏 Teşekkürler
-
-- [Ollama](https://ollama.ai/) - Local LLM inference
-- [LangChain](https://langchain.com/) - LLM framework
-- [FAISS](https://github.com/facebookresearch/faiss) - Vector similarity search
-- [scipy](https://scipy.org/) - Scientific computing
+*"Zeka, ham güç değil - strateji ve uygulama kombinasyonudur."*
