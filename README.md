@@ -6,6 +6,7 @@
 [![Python](https://img.shields.io/badge/Python-3.11+-blue.svg)](https://www.python.org/)
 [![Experiments](https://img.shields.io/badge/Experiments-360-green.svg)](#deney-sonuçları)
 [![Success Rate](https://img.shields.io/badge/Success%20Rate-99.4%25-brightgreen.svg)](#deney-sonuçları)
+[![Medium](https://img.shields.io/badge/Medium-Makale-black.svg)](https://barancanercan.medium.com/bir-dil-modelini-zeki-yapan-sey-ne-1b51d4f435c7)
 
 ---
 
